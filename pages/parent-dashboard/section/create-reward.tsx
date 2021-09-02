@@ -2,9 +2,10 @@ import { NextPage } from "next"
 import { getData } from "utils/getData"
 
 import RewardsSection from "@/components/dashboard/parent-dashboard/parent-sections/sections/rewards-section";
+import { CreateReward } from "types/create-rewards";
 
 interface Props {
-    rewards: any[];
+    rewards: CreateReward[];
 }
 
 const DashboardParentSection: NextPage<Props> = ({ rewards }): JSX.Element => {
@@ -27,8 +28,6 @@ export const getStaticProps = async () => {
             }
          }
     }
-
-    console.log(data.rewards)
   
     return{
         props: { rewards: data.rewards}
