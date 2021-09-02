@@ -1,0 +1,34 @@
+{
+    "rewards": [
+        {
+            "id": "1",
+            "title":"Half-day trip to Zoo",
+            "price": "15",
+            "image": "image"
+        },
+        {
+            "id": "2",
+            "title":"Trip to the Park",
+            "price": "10",
+            "image": "image"
+        },
+        {
+            "id": "3",
+            "title":"Fishing Adventure",
+            "price": "20",
+            "image": "image"
+        },
+        {
+            "id": "4",
+            "title":"All-day trip to Zoo",
+            "price": "18",
+            "image": "image"
+        },
+        {
+            "id": "5",
+            "title":"Trip to Amusement park",
+            "price": "30",
+            "image": "image"
+        }
+    ]
+}

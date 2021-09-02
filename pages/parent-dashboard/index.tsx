@@ -7,7 +7,7 @@ import { RiUserHeartFill } from 'react-icons/ri'
 // import { getData } from 'utils/getData';
 
 import ParentLayout from '@/components/shared-components/layouts/parent-layout';
-import SectionButton from '@/components/dashboard/parent-dashboard/section-button/section-button';
+import SectionButton from '@/components/dashboard/parent-dashboard/parent-sections/section-button/section-button';
 import { ParentSection } from 'types/parent-section';
 
 
@@ -17,13 +17,13 @@ const parentSection: ParentSection[] = [
         icon: <AiTwotoneStar />,
         bgColour: '#66B8EC',
         text: 'Create Rewards for my children',
-        onClick: () => {}
+        target: '/create-reward'
     },
     {
         icon: <RiUserHeartFill />,
         bgColour: '#EA6699',
         text: ' Manage Accounts',
-        onClick: () => {}
+        target: '/create-reward'
     }
 ]
 
@@ -54,7 +54,7 @@ const ParentDashboard: NextPage<Props> = ({ cards }) => {
                                 key={index}
                                 icon={section.icon} 
                                 bgColour={section.bgColour}
-                                onClick={section.onClick} 
+                                target={section.target}
                             >
                                 { section.text }
                             </SectionButton>

@@ -4,5 +4,5 @@ export type ParentSection = {
     icon?: ReactElement,
     bgColour?: string,
     text: string,
-    onClick: () => void
+    target: string
 }

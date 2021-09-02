@@ -1,15 +1,19 @@
 import { Box, Text } from "@chakra-ui/react"
 import { NextPage } from "next"
-import { ReactNode, ReactElement } from "react"
+import { ReactNode, ReactElement } from "react";
+import { useRouter } from 'next/router';
 
 interface Props {
     children: ReactNode
-    onClick: () => void
+    target: string
     icon?: ReactElement
     bgColour?: string
 }
 
-const SectionButton: NextPage<Props> = ({ children, onClick, icon, bgColour }): JSX.Element => {
+const SectionButton: NextPage<Props> = ({ children, target, icon, bgColour }): JSX.Element => {
+
+    const router = useRouter();
+
     return (
         <Box
             d='flex'
@@ -25,7 +29,7 @@ const SectionButton: NextPage<Props> = ({ children, onClick, icon, bgColour }): 
             bg={ bgColour }
             _hover={{ bg: "#2f5a74" }}
             cursor='pointer'
-            onClick={ onClick }
+            onClick={() => router.push(`/parent-dashboard/section/${target}`)}
         >
             {
                 icon &&
