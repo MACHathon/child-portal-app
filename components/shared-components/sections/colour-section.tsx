@@ -16,6 +16,20 @@ const ColourSection: NextPage<Props> = ({ bgColour, children }): JSX.Element => 
             fontFamily='Raleway'
             padding={6} 
             bg={ bgColour }
+            overflowY="auto"
+            css={{
+              '&::-webkit-scrollbar': {
+                width: '12px',
+              },
+              '&::-webkit-scrollbar-track': {
+                width: '11px',
+                background: '#5091BA'
+              },
+              '&::-webkit-scrollbar-thumb': {
+                background: '#ACD9F0',
+                borderRadius: '50px',
+              },
+            }}
         >
             { children }
         </Box>

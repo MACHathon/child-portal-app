@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react"
+import { Box, Text } from "@chakra-ui/react"
 import { NextPage } from "next"
 import { ReactElement } from "react"
 
@@ -6,14 +6,18 @@ interface Props {
     onClick: () => void
     icon: ReactElement
     color: string
+    text: string
 }
 
-const OptionButton: NextPage<Props> = ({ color, icon, onClick }): JSX.Element => {
+const OptionButton: NextPage<Props> = ({ color, icon, text, onClick }): JSX.Element => {
 
     return (
         <Box
             color={ color }
             onClick={onClick}
+            d='flex'
+            alignItems='center'
+            cursor='pointer'
         >
             <Box
                 fontSize='30px'
@@ -22,6 +26,14 @@ const OptionButton: NextPage<Props> = ({ color, icon, onClick }): JSX.Element =>
             >
                 { icon }
             </Box>
+            <Text
+                fontFamily='Raleway'
+                fontSize='28px'
+                fontWeight='400'
+                marginLeft='10px'
+            >
+                { text }
+            </Text>
         </Box>
 
     )

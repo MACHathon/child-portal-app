@@ -57,7 +57,7 @@ const AddChildForm: NextPage<Props> = ({ registerNewChild }): JSX.Element => {
                 <TextInputField isPassword={false} name='pin' placeholder='Create a pin for your child'
                 value={pin} onChange={onHandleChange}/>
 
-                <SubmitField value='Add Child' />
+                <SubmitField value='Add Child' bgColor='#66B8EC'/>
             </form>
         </Box>
     )

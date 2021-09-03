@@ -5,6 +5,7 @@ import TextInputField from "@/components/shared-components/input-fields/text-inp
 import ConfirmButton from "@/components/shared-components/buttons/confirm-button";
 import { useRouter } from 'next/router';
 import ImageFooter from "../shared-components/image-footer/image-footer";
+import LoginRoleSwitch from "./login-role-switch";
 
 interface LoginProps {}
 
@@ -82,15 +83,7 @@ const Login: React.FC<LoginProps> = ({}) => {
           flexDirection='column'
           width='100%'
         >
-          <Text 
-            width='100%'
-            fontSize='24px' 
-            fontWeight='bold'                            
-            align='center'
-            paddingBottom='2'
-          >
-            Child login
-          </Text>
+          <LoginRoleSwitch />
           <TextInputField isPassword={false} onChange={handleUsernameChange} placeholder="Your ID" />
           <TextInputField isPassword={true} onChange={handlePasswordChange} placeholder="Your PIN number" />
           <ConfirmButton onClick={handleLoginClick}>Login</ConfirmButton>

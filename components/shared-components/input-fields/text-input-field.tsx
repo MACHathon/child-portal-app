@@ -8,9 +8,10 @@ interface Props {
     isPassword: boolean;
     value?: string
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+    white?: boolean;
 }
 
-const TextInputField: NextPage<Props>= ({ onChange, name, placeholder, isPassword, value}): JSX.Element => {
+const TextInputField: NextPage<Props>= ({ onChange, name, placeholder, isPassword, value, white}): JSX.Element => {
 
     return(
         <Input 
@@ -19,7 +20,7 @@ const TextInputField: NextPage<Props>= ({ onChange, name, placeholder, isPasswor
             borderRadius='10px'
             padding='24px 32px'
             margin='12px auto'
-            bg='#e7e7e7'
+            bg={white ? '#FFFFFF' : '#e7e7e7'}
             _placeholder={{color:'#7C7763'}}
             border='none'
             type={ isPassword ? 'password' : 'text' } 
