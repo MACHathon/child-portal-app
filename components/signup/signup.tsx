@@ -4,6 +4,7 @@ import {
   FieldContainer,
   TypeReference,
 } from "@commercetools/platform-sdk/dist/generated/models/type";
+import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import { AnonUserClient } from "../../packages/Commercetools/Clients/APIClient"
 import ConfirmButton from "../shared-components/buttons/confirm-button";
@@ -13,6 +14,9 @@ import TextInputField from "../shared-components/input-fields/text-input-field";
 interface SignUpProps {}
 
 const SignUp: React.FC<SignUpProps> = ({}) => {
+
+  const router = useRouter();
+
   const [parentEmail, setParentEmail] = React.useState<string>("");
   const [parentPassword, setParentPassword] = React.useState<string>("");
   const [parentName, setParentName] = React.useState<string>("");
@@ -68,8 +72,7 @@ const SignUp: React.FC<SignUpProps> = ({}) => {
         console.log(response);
 
         if (response.statusCode == 201) {
-          setIsLoggedIn(true);
-          setIsWaiting(false);
+          router.push("/");
         } else {
           setIsWaiting(false);
           setIsError(true);
