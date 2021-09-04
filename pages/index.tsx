@@ -10,28 +10,6 @@ import {
 import Login from "../components/login/login";
 
 const Home: NextPage = () => {
-  
-  // Sign up to do
-  // useEffect(() => {
-  //   AnonUserClient.me()
-  //     .signup()
-  //     .post({ body: { email: "dave@daveleigh.xyz", password: "password" } })
-  //     .execute()
-  //     .then((x) => {
-  //       console.log(x);
-  //     });
-  // }, []);
-
-  // Once logged in..
-  // LoggedInUserClient
-  //   .me()
-  //   .get()
-  //   .execute()
-  //   .then((x) => {
-  //     console.log(x);
-  //   });
-
-
   return (
     <div className={styles.container}>
       <Head>

@@ -6,6 +6,7 @@ import ConfirmButton from "@/components/shared-components/buttons/confirm-button
 import { useRouter } from 'next/router';
 import ImageFooter from "../shared-components/image-footer/image-footer";
 import LoginRoleSwitch from "./login-role-switch";
+import { RoleSwitchState } from "./roleSwitchState";
 
 interface LoginProps {}
 
@@ -20,6 +21,8 @@ const Login: React.FC<LoginProps> = ({}) => {
   const [isLoggedIn, setIsLoggedIn] = React.useState<boolean>(false);
   const [isError, setIsError] = React.useState<boolean>(false);
 
+  const [ isParent, setIsParent ] = useState<boolean>(false);
+
   useEffect(() => {
     LoggedInUserClient.me()
       .get()
@@ -27,7 +30,7 @@ const Login: React.FC<LoginProps> = ({}) => {
       .then((response: any) => {
         if (!!response?.body?.id) {
           console.log(response);
-          router.push('/dashboard');
+          router.push('/kid-dashboard');
         }
       })
       .catch((error) => {
@@ -56,7 +59,7 @@ const Login: React.FC<LoginProps> = ({}) => {
         const content = await rawResponse.json();
 
         if (!!content?.access_token) {
-          router.push('/dashboard');
+          router.push('/kid-dashboard');
           setIsWaiting(false);
         }
       }
@@ -71,6 +74,10 @@ const Login: React.FC<LoginProps> = ({}) => {
     setPassword(event.target.value);
   };
 
+  const handleRoleChange = (toRole: RoleSwitchState) => {
+    console.log(toRole);
+  }
+
   return (
     <>
       {isWaiting ? (
@@ -83,7 +90,7 @@ const Login: React.FC<LoginProps> = ({}) => {
           flexDirection='column'
           width='100%'
         >
-          <LoginRoleSwitch />
+          <LoginRoleSwitch handleRoleChange={handleRoleChange} />
           <TextInputField isPassword={false} onChange={handleUsernameChange} placeholder="Your ID" />
           <TextInputField isPassword={true} onChange={handlePasswordChange} placeholder="Your PIN number" />
           <ConfirmButton onClick={handleLoginClick}>Login</ConfirmButton>
