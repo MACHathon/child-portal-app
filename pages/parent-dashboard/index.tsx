@@ -47,7 +47,7 @@ const ParentDashboard: NextPage<Props> = ({ cards }) => {
     );
 
     if (rawResponse.status == 200) {
-      router.push("/");
+      window.location.href = "/";
     }
   };
 
