@@ -26,7 +26,6 @@ const SignUp: React.FC<SignUpProps> = ({}) => {
 
   const handleSignUpClick = () => {
     (async () => {
-
       // Register Parent
       let parentResponse = await AnonUserClient.me()
         .signup()
@@ -34,29 +33,37 @@ const SignUp: React.FC<SignUpProps> = ({}) => {
           body: {
             email: parentEmail,
             password: parentPassword,
-            firstName: parentName, 
+            firstName: parentName,
             // Link the child
-            companyName: `${username}-child@toyken.org` // Should use a custom field but for times sake hacking it
+            companyName: `${username}-child@toyken.org`, // Should use a custom field but for times sake hacking it
           },
         })
         .execute();
-      
+
       if (parentResponse.statusCode == 201) {
-        
         console.log(parentResponse);
-        
+
         // Register Child
 
+        // Get an ID
+        let latestUserId = await AnonUserClient.customObjects()
+          .get({ queryArgs: { where: 'key="latestId"' } })
+          .execute();
+
+        let currentId = +latestUserId?.body?.results[0].value;
+        let newId = "00" + currentId + 1;
+
         let response = await AnonUserClient.me()
-        .signup()
-        .post({
-          body: {
-            email: `${username}-child@toyken.org`,
-            password: password,
-            firstName: username, // Should use a custom field but for times sake hacking it
-          },
-        })
-        .execute();
+          .signup()
+          .post({
+            body: {
+              email: `${username}-child@toyken.org`,
+              title: newId,
+              password: password,
+              firstName: username, // Should use a custom field but for times sake hacking it
+            },
+          })
+          .execute();
 
         console.log(response);
 
@@ -67,7 +74,6 @@ const SignUp: React.FC<SignUpProps> = ({}) => {
           setIsWaiting(false);
           setIsError(true);
         }
-        
       } else {
         setIsWaiting(false);
         setIsError(true);
@@ -75,15 +81,21 @@ const SignUp: React.FC<SignUpProps> = ({}) => {
     })();
   };
 
-  const handleParentNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleParentNameChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setParentName(event.target.value);
   };
 
-  const handleParentEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleParentEmailChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setParentEmail(event.target.value);
   };
 
-  const handleParentPasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleParentPasswordChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setParentPassword(event.target.value);
   };
 
