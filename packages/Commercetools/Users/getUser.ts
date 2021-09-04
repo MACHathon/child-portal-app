@@ -41,11 +41,10 @@ export const getUserType = (companyName:string | undefined) : UserType => {
 
     // Using company name as link to child (Parent acc) OR as Retailer business name (Retailer acc)
     // Yes.. this is a hack!
-    if (!!companyName)
+    if (!!companyName && companyName.indexOf('child') > -1)
     {
-        return companyName.indexOf('child') > -1 ? 'parent' : 'retailer'
+        return 'parent'
     }
-
     return 'child';
 }
 

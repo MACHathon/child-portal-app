@@ -67,12 +67,10 @@ const Login: React.FC<LoginProps> = ({}) => {
         if (!!content?.access_token) {
           setIsWaiting(false);
 
-          let me = await getMe();
-
-          if (me?.userType == "child") {
-            window.location.href = "/kid-dashboard";
-          } else {
+          if (username.indexOf("@") > -1) { // Another hack because getMe isnt working - TODO Debug if time.
             window.location.href = "/parent-dashboard";
+          } else {
+            window.location.href = "/kid-dashboard";
           }
         }
       }
