@@ -75,7 +75,11 @@ const Login: React.FC<LoginProps> = ({}) => {
   };
 
   const handleRoleChange = (toRole: RoleSwitchState) => {
-    console.log(toRole);
+    if (toRole == 'parent') {
+      setIsParent(true);
+    } else {
+      setIsParent(false);
+    }
   }
 
   return (
@@ -91,8 +95,8 @@ const Login: React.FC<LoginProps> = ({}) => {
           width='100%'
         >
           <LoginRoleSwitch handleRoleChange={handleRoleChange} />
-          <TextInputField isPassword={false} onChange={handleUsernameChange} placeholder="Your ID" />
-          <TextInputField isPassword={true} onChange={handlePasswordChange} placeholder="Your PIN number" />
+          <TextInputField isPassword={false} onChange={handleUsernameChange} placeholder={ isParent ? "Your Email address" : "Your ID"} />
+          <TextInputField isPassword={true} onChange={handlePasswordChange} placeholder={ isParent ? "Your Password" : "Your PIN number"} />
           <ConfirmButton onClick={handleLoginClick}>Login</ConfirmButton>
           {isError ? <div>Invalid credentials</div> : null}
           <ImageFooter />
