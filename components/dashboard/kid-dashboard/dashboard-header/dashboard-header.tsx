@@ -10,7 +10,7 @@ const DashboardHeader: NextPage = ():JSX.Element => {
     return (
         <HeaderLeyout>
             <ClientInfo image='../../images/clara-profile.png' message='Hello Clara! (#0066)'/>
-            <ToykenInfo />
+            <ToykenInfo />          
         </HeaderLeyout>
     )
 }
