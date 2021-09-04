@@ -8,12 +8,26 @@ import { Button } from "@chakra-ui/react";
 
 import DashboardCard from "@/components/dashboard/kid-dashboard/dashboard-card/dashboard-card";
 import DashboardLayout from "@/components/shared-components/layouts/dashboard-layout";
+import { useEffect } from "react";
+import { getMe } from "packages/Commercetools/Users/getUser";
 
 interface Props {
   cards: Card[];
 }
 
 const KidDashboard: NextPage<Props> = ({ cards }) => {
+
+  useEffect(() => {
+    
+    (async () => {    
+        var me = await getMe();
+  
+        console.log("me");
+        console.log(me);
+    })();
+
+  }, []);
+
   const router = useRouter();
 
   const onRedirectHandler = async () => {

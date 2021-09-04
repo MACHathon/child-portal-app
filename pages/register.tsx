@@ -8,7 +8,7 @@ import { Box, Text, Heading } from "@chakra-ui/react";
 
 const Home: NextPage = () => {
   return (
-    <div className={styles.container}>
+    <div className={styles.containerRegister}>
       <Head>
         <title>Toykens!</title>
         <meta name="description" content="Toyken" />
