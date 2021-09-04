@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import ImageFooter from "../shared-components/image-footer/image-footer";
 import LoginRoleSwitch from "./login-role-switch";
 import { RoleSwitchState } from "./roleSwitchState";
+import Link from "next/link";
 
 interface LoginProps {}
 
@@ -99,7 +100,8 @@ const Login: React.FC<LoginProps> = ({}) => {
           <TextInputField isPassword={true} onChange={handlePasswordChange} placeholder={ isParent ? "Your Password" : "Your PIN number"} />
           <ConfirmButton onClick={handleLoginClick}>Login</ConfirmButton>
           {isError ? <div>Invalid credentials</div> : null}
-          <ImageFooter />
+          <Text align="center" paddingTop="2" _hover={{ textColor: "#2f5a74" }}><Link href="/register">No account? Ask your parent to register here!</Link></Text>
+          {/* <ImageFooter /> */}
         </Box>
       )}
     </>
