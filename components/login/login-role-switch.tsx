@@ -29,7 +29,7 @@ const LoginRoleSwitch: React.FC<LoginRoleSwitchProps> = ({handleRoleChange}) => 
             fontSize='28px' 
             fontWeight='bold'   
             padding='0 40px'
-            marginBottom='60px'
+            marginBottom='20px'
             width='100%'
         >
             <MotionText   

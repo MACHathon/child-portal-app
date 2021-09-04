@@ -1,3 +1,4 @@
+import { Box } from "@chakra-ui/react";
 import {
   CustomFields,
   FieldContainer,
@@ -5,6 +6,9 @@ import {
 } from "@commercetools/platform-sdk/dist/generated/models/type";
 import React, { useState, useEffect } from "react";
 import { AnonUserClient } from "../../packages/Commercetools/Clients/APIClient"
+import ConfirmButton from "../shared-components/buttons/confirm-button";
+import ImageFooter from "../shared-components/image-footer/image-footer";
+import TextInputField from "../shared-components/input-fields/text-input-field";
 
 interface SignUpProps {}
 
@@ -19,23 +23,6 @@ const SignUp: React.FC<SignUpProps> = ({}) => {
   const [isWaiting, setIsWaiting] = React.useState<boolean>(false);
   const [signUpcomplete, setIsLoggedIn] = React.useState<boolean>(false);
   const [isError, setIsError] = React.useState<boolean>(false);
-
-  // useEffect(() => {
-  //   LoggedInUserClient.me()
-  //     .get()
-  //     .execute()
-  //     .then((response: any) => {
-  //       if (!!response?.body?.id) {
-  //         console.log(response);
-  //         setIsLoggedIn(true);
-  //         setIsWaiting(false);
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //       setIsWaiting(false);
-  //     });
-  // }, []);
 
   const handleSignUpClick = () => {
     (async () => {
@@ -110,96 +97,28 @@ const SignUp: React.FC<SignUpProps> = ({}) => {
 
   return (
     <>
-      {isWaiting ? (
+       {isWaiting ? (
         <h1>Loading spinner here...</h1>
       ) : signUpcomplete ? (
-        <h1>Success!</h1>
+        <h1>Logged in</h1>
       ) : (
-        <div className="w-1/4">
-          <div className="mb-4">
-            <label
-              className="block text-grey-darker text-sm font-bold mb-2"
-              htmlFor="name"
-            >
-              Your name (Parent)
-            </label>
-            <input
-              className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"
-              id="name"
-              onChange={handleParentNameChange}
-              placeholder="Your Name"
-            />
-          </div>
-          <div className="mb-4">
-            <label
-              className="block text-grey-darker text-sm font-bold mb-2"
-              htmlFor="parentEmail"
-            >
-              Email address (Parent)
-            </label>
-            <input
-              className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"
-              id="parentEmail"
-              onChange={handleParentEmailChange}
-              placeholder="Email address"
-            />
-          </div>
-          <div className="mb-4">
-            <label
-              className="block text-grey-darker text-sm font-bold mb-2"
-              htmlFor="parentPassword"
-            >
-              Password (Parent)
-            </label>
-            <input
-              className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"
-              id="parentPassword"
-              onChange={handleParentPasswordChange}
-              placeholder="Password"
-              type="password"
-            />
-          </div>
-          <div className="mb-4">
-            <label
-              className="block text-grey-darker text-sm font-bold mb-2"
-              htmlFor="username"
-            >
-              Username for your child
-            </label>
-            <input
-              className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"
-              id="username"
-              onChange={handleUsernameChange}
-              placeholder="Username"
-            />
-          </div>
-          <div className="mb-6">
-            <label
-              className="block text-grey-darker text-sm font-bold mb-2"
-              htmlFor="password"
-            >
-              Choose a PIN number for your child
-            </label>
-            <input
-              className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"
-              id="password"
-              onChange={handlePasswordChange}
-              placeholder="PIN"
-            />
-          </div>
-          <div className="flex items-center justify-between">
-            <button
-              className="w-full bg-green-600 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
-              onClick={handleSignUpClick}
-            >
-              Create account
-            </button>
-            <p className="inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker">
-              {isError ? <div>Error...</div> : null}
-            </p>
-          </div>
-        </div>
-      )}
+        <Box
+          d='flex'
+          flexDirection='column'
+          width='100%'
+        >
+           <Box zIndex="20">
+            <TextInputField isPassword={false} onChange={handleParentNameChange} placeholder="Your name (Parent)" />
+            <TextInputField isPassword={false} onChange={handleParentEmailChange} placeholder="Email address (Parent)" />
+            <TextInputField isPassword={true} onChange={handleParentPasswordChange} placeholder="Password (Parent)" />
+            <TextInputField isPassword={false} onChange={handleUsernameChange} placeholder="Username for your child" />
+            <TextInputField isPassword={true} onChange={handlePasswordChange} placeholder="Pick a PIN number for your child" />
+            <ConfirmButton onClick={handleSignUpClick}>Register</ConfirmButton>
+            {isError ? <div>Invalid credentials</div> : null}
+           </Box>
+           <ImageFooter  />
+        </Box>
+    )}
     </>
   );
 };
