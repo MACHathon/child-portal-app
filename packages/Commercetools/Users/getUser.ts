@@ -1,4 +1,6 @@
-import { LoggedInUserClient } from "../Clients/ApiClient";
+import { LoggedInUserClient } from "../Clients/APIClient";
+import { Me } from "./Me";
+import { UserType } from "./UserType";
 
 
 const getMeRequest = () => {
@@ -7,6 +9,8 @@ const getMeRequest = () => {
   .execute(); 
 };
 
+
+
 export const getMe = async () => {
 
   try {
@@ -14,15 +18,18 @@ export const getMe = async () => {
     if (!!response?.body?.id) {
 
       let userType = getUserType(response.body.companyName);
-  
-      return {
-          email: response.body.email,
-          userId: response.body.firstName,
-          commerceToolsId: response.body.id,
-          id: response.body.title,
-          userType: userType,
-          linkedChild: userType == 'parent' ? response.body.companyName : null
+      
+      const me: Me = {
+        email: response.body.email,
+        userId: response.body.firstName,
+        commerceToolsId: response.body.id,
+        id: response.body.title,
+        userType: userType,
+        linkedChild: userType == 'parent' ? response.body.companyName : null,
+        version: response.body.version
       }
+
+      return me;
     }
     return null;
   } catch (e) {
@@ -42,7 +49,7 @@ export const getUserType = (companyName:string | undefined) : UserType => {
     return 'child';
 }
 
-type UserType = 'parent' | 'child' | 'retailer';
+
 
 /*const literal: UserType  = 'child'
 const method = (val: UserType) => {

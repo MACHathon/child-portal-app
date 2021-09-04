@@ -1,0 +1,1 @@
+export type UserType = 'parent' | 'child' | 'retailer';
