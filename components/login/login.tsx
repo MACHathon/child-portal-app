@@ -95,13 +95,15 @@ const Login: React.FC<LoginProps> = ({}) => {
           flexDirection='column'
           width='100%'
         >
-          <LoginRoleSwitch handleRoleChange={handleRoleChange} />
-          <TextInputField isPassword={false} onChange={handleUsernameChange} placeholder={ isParent ? "Your Email address" : "Your ID"} />
-          <TextInputField isPassword={true} onChange={handlePasswordChange} placeholder={ isParent ? "Your Password" : "Your PIN number"} />
-          <ConfirmButton onClick={handleLoginClick}>Login</ConfirmButton>
-          {isError ? <div>Invalid credentials</div> : null}
-          <Text align="center" paddingTop="2" _hover={{ textColor: "#2f5a74" }}><Link href="/register">No account? Ask your parent to register here!</Link></Text>
-          {/* <ImageFooter /> */}
+          <Box zIndex="20">
+            <LoginRoleSwitch handleRoleChange={handleRoleChange} />
+            <TextInputField isPassword={false} onChange={handleUsernameChange} placeholder={ isParent ? "Your Email address" : "Your ID"} />
+            <TextInputField isPassword={true} onChange={handlePasswordChange} placeholder={ isParent ? "Your Password" : "Your PIN number"} />
+            <ConfirmButton onClick={handleLoginClick}>Login</ConfirmButton>
+            {isError ? <div>Invalid credentials</div> : null}
+            <Text align="center" paddingTop="2" _hover={{ textColor: "#2f5a74" }}><Link href="/register">No account? Ask your parent to register here!</Link></Text>
+          </Box>
+          <ImageFooter  />
         </Box>
       )}
     </>

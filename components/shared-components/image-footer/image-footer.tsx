@@ -10,7 +10,8 @@ const ImageFooter: NextPage = (): JSX.Element => {
             left='0'
             src='../../images/mountain-scene.svg' 
             alt='footer' 
-            width='100%' 
+            width='100%'
+            zIndex="10"             
         />
     )
 
