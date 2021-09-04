@@ -116,7 +116,7 @@ const SignUp: React.FC<SignUpProps> = ({}) => {
             <ConfirmButton onClick={handleSignUpClick}>Register</ConfirmButton>
             {isError ? <div>Invalid credentials</div> : null}
            </Box>
-           <ImageFooter  />
+           <ImageFooter  /> 
         </Box>
     )}
     </>
