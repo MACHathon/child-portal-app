@@ -36,6 +36,8 @@ const Login: React.FC<LoginProps> = ({}) => {
         } else {
           window.location.href = "/parent-dashboard";
         }
+      } else {
+        setIsWaiting(false);
       }
     })();
   }, []);
