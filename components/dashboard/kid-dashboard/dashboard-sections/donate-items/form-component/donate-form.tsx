@@ -7,6 +7,8 @@ import { getCategories } from "packages/Commercetools/Categories/getCategories";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import DeliveryChackBoxes from "./delivrery-checkboxes";
 import { Select } from "@chakra-ui/react";
+import { createItem } from "packages/Commercetools/Items/createItem";
+import { getMe } from "packages/Commercetools/Users/getUser";
 
 
 type Category = {
@@ -52,9 +54,16 @@ const DonateForm: NextPage = (): JSX.Element => {
         condition: selectedCondition
     }
 
-    const onHandleSubmit = (e: FormEvent<HTMLFormElement>): void => {
+    const onHandleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault(); 
         console.log(itemToSubmit);
+
+        let me = await getMe();
+
+        let response = await createItem(itemToSubmit.type, itemToSubmit.name, me?.id as string, "5-8", itemToSubmit.condition, "");
+
+        console.log(response);
+
         setCheckedOption({});
         setRegisterItem({
             name: '',
@@ -97,7 +106,7 @@ const DonateForm: NextPage = (): JSX.Element => {
                     placeholder='Item condition' 
                     name='condition'                    
                     onChange={onHandleConditionChange}
-                    options={[{id: "0", value: "New"},{id: "1", value: "Used - Good"},{id: "2", value: "Used - Worn"},{id: "3", value: "Used - Needs some TLC"}]}
+                    options={[{id: "New", value: "New"},{id: "Used - good", value: "Used - Good"},{id: "Used - worn", value: "Used - Worn"},{id: "Needs some TLC", value: "Used - Needs some TLC"}]}
                 />
 
                 <DeliveryChackBoxes 
