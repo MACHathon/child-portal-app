@@ -2,14 +2,22 @@ import { NextPage } from "next"
 import { Box, Text } from '@chakra-ui/react'
 import { useState } from "react"
 import { motion } from 'framer-motion';
+import { RoleSwitchState } from "./roleSwitchState";
 
-const LoginRoleSwitch: NextPage = (): JSX.Element => {
+interface LoginRoleSwitchProps {
+    handleRoleChange: (toRole: RoleSwitchState) => void;
+}
+
+const LoginRoleSwitch: React.FC<LoginRoleSwitchProps> = ({handleRoleChange}) => {
 
     const MotionText = motion(Text);
-    const [ isParent, setIsParent ] = useState<boolean>(true);
+   
+    const handleChildClick = () => {
+        handleRoleChange('child');
+    }
 
-    const onRoleToggleHandler = (): void => {
-        setIsParent(prevState => !prevState)
+    const handleParentClick = () => {
+        handleRoleChange('parent');
     }
 
     //TODO clip path border
@@ -21,20 +29,22 @@ const LoginRoleSwitch: NextPage = (): JSX.Element => {
             fontSize='28px' 
             fontWeight='bold'   
             padding='0 40px'
-            marginBottom='60px'
+            marginBottom='20px'
             width='100%'
         >
             <MotionText   
                 whileHover={{ scale: 1.1, rotate: 20 }}
                 whileTap={{ scale: 1, rotate: 0 }}
-                cursor='pointer'                                      
+                cursor='pointer'     
+                onClick={handleChildClick}                     
             >
                 Child
             </MotionText>
             <MotionText
                 whileHover={{ scale: 1.15, rotate: -25 }}
                 whileTap={{ scale: 1, rotate: 0 }}
-                cursor='pointer'                                      
+                cursor='pointer' 
+                onClick={handleParentClick}                                             
             >
                 Parent
             </MotionText>

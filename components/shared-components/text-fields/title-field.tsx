@@ -17,7 +17,7 @@ const TitleField:NextPage<Props> = ({ children, fontSize, color }) :JSX.Element 
             fontWeight='700'
             color={ color }
             textAlign='center'
-            marginBottom='5%'
+            marginBottom='2%'
         >
             { children }
         </Text>
