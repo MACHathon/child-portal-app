@@ -30,7 +30,7 @@ const Login: React.FC<LoginProps> = ({}) => {
 
       if (!!me) {
         console.log(me);
-        setIsWaiting(false);
+        setIsWaiting(false);``
         if (me?.userType == "child") {
           window.location.href = "/kid-dashboard";
         } else {

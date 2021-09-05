@@ -26,6 +26,7 @@ const DeliveryChackBoxes: NextPage<Props> = ({ checkedOption, setCheckedOption }
     return (
         <Box 
             marginTop='30px'
+            marginBottom='30px'
             d='flex'
             flexDirection='column'
         >

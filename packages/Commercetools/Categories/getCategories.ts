@@ -1,4 +1,5 @@
-import { AnonUserClient } from "../Clients/ApiClient";
+import { AnonUserClient } from "../Clients/APIClient";
+
 
 const getCategoriesQuery = () => {
   return AnonUserClient.categories().get().execute();
