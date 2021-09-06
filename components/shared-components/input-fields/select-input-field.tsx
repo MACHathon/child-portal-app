@@ -29,7 +29,7 @@ const SelectField: NextPage<Props>= ({ onChange, name, placeholder, options}): J
         margin='12px auto'
         marginBottom='25px'
         bg='#e7e7e7'
-        _placeholder={{color:'#7C7763'}}
+        textColor='#7C7763'
         border='none'
         onChange={onChange}>
             {

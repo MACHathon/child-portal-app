@@ -10,10 +10,10 @@ interface Props {
 }
 
 const deliveryOptions: { name: string }[] = [  
-    { name: '... to post' },
-    { name: '... to drop of locally ( within 5 miles )' },
-    { name: '... to deliver ( within 20 miles )' },
-    { name: '... for someone to come and collect' }
+    { name: 'to post' },
+    { name: 'to drop of locally ( within 5 miles )' },
+    { name: 'to deliver ( within 20 miles )' },
+    { name: 'for someone to come and collect' }
 ]
 
 
@@ -37,7 +37,7 @@ const DeliveryChackBoxes: NextPage<Props> = ({ checkedOption, setCheckedOption }
                 color='#FFFFFF'
                 marginBottom='15px'
             >
-                I am happy ...
+                I am happy:
             </Text>
             <Fragment>
                 {

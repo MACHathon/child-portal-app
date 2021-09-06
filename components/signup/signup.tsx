@@ -19,6 +19,7 @@ const SignUp: React.FC<SignUpProps> = ({}) => {
   const [parentEmail, setParentEmail] = React.useState<string>("");
   const [parentPassword, setParentPassword] = React.useState<string>("");
   const [parentName, setParentName] = React.useState<string>("");
+  const [postCode, setPostcode] = React.useState<string>("");
 
   const [isWaiting, setIsWaiting] = React.useState<boolean>(false);
   const [signUpcomplete, setIsLoggedIn] = React.useState<boolean>(false);
@@ -36,6 +37,12 @@ const SignUp: React.FC<SignUpProps> = ({}) => {
             firstName: parentName,
             // Link the child
             companyName: `not-linked-child@toyken.org`, // Should use a custom field but for times sake hacking it
+            addresses: [
+              {
+                postalCode: postCode,
+                country: "UK"     // Future TODO country input. 
+              },
+            ]
           },
         })
         .execute();
@@ -90,6 +97,12 @@ const SignUp: React.FC<SignUpProps> = ({}) => {
     setParentPassword(event.target.value);
   };
 
+  const handlePostCodeChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setPostcode(event.target.value);
+  };
+
   return (
     <>
       {isWaiting ? (
@@ -103,6 +116,11 @@ const SignUp: React.FC<SignUpProps> = ({}) => {
               isPassword={false}
               onChange={handleParentNameChange}
               placeholder="Your name (Parent)"
+            />
+             <TextInputField
+              isPassword={false}
+              onChange={handlePostCodeChange}
+              placeholder="Your Postal code"
             />
             <TextInputField
               isPassword={false}

@@ -44,6 +44,7 @@ const DonateChackbox: NextPage<Props> = ({ name, label, checked, onHandleCheck }
                 fontSize='20px'
                 fontWeight='400'
                 color='#FFFFFF'
+                paddingLeft='10px'
             >
                 { label }
             </Text>
