@@ -1,8 +1,19 @@
 import { LoggedInUserClient } from "../Clients/APIClient";
 
+const getDeliveryOptionKey = (option: string) => {
+  if (option == 'to post') return 'post'
+  if (option == 'to drop off locally ( within 5 miles )') return 'drop off locally'
+  if (option == 'to deliver ( within 20 miles )') return 'deliver'
+  return 'collection'
+}
 
-export const createItem =  async(categoryId: string, name: string, childid: string, ageRange: string, condition: string, brand: string) => {
+
+export const createItem =  async(categoryId: string, name: string, description:string, postCode: string, childid: string, ageRange: string, condition: string, deliveryOptions: string[], brand: string) => {
   
+  // This is horrible.. very sorry.
+  console.log(deliveryOptions)
+  deliveryOptions = deliveryOptions.map(option => getDeliveryOptionKey(option));
+
   let slug = name.replace(/\s+/g, "-").toLowerCase();
   let toyType = "6102b311-bdc5-4760-b43f-ab7061cf74ea";
 
@@ -41,6 +52,22 @@ export const createItem =  async(categoryId: string, name: string, childid: stri
             {
               name: "brand",
               value: brand,
+            },
+            {
+              name: "description",
+              value: description,
+            },
+            {
+              name: "child-id",
+              value: childid,
+            },
+            {
+              name: "donator-postcode",
+              value: postCode,
+            },
+            {
+              name: "delivery-option",
+              value:deliveryOptions
             },
           ],
           // prices: [

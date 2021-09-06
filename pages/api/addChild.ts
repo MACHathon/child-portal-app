@@ -40,6 +40,12 @@ export default async function handler(
           password: req.body.pin,
           firstName: req.body.name,
           companyName: req.body.username, // Child username stored is company name field - hack
+          addresses: [
+            {
+              postalCode: req.body.parentPostcode ?? '',
+              country: "UK"     // Future TODO country input. 
+            },
+          ]
         },
       })
       .execute();

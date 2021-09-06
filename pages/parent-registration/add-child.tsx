@@ -37,6 +37,7 @@ const AddChild: NextPage = (): JSX.Element => {
           name: child.name,
           parentVersion: me?.version,
           parentId: me?.commerceToolsId,
+          parentPostcode: me?.postCode
         }),
       }
     );

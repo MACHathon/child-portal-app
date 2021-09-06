@@ -9,8 +9,6 @@ const getMeRequest = () => {
   .execute(); 
 };
 
-
-
 export const getMe = async () => {
 
   try {
@@ -18,10 +16,12 @@ export const getMe = async () => {
     if (!!response?.body?.id) {
 
       let userType = getUserType(response.body.companyName);
+      let postCode = response.body.addresses.length ? response.body.addresses[0].postalCode : '';
       
       const me: Me = {
         email: response.body.email,
         userId: response.body.firstName,
+        postCode: postCode,
         commerceToolsId: response.body.id,
         id: response.body.title,
         userType: userType,

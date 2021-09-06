@@ -11,7 +11,7 @@ interface Props {
 
 const deliveryOptions: { name: string }[] = [  
     { name: 'to post' },
-    { name: 'to drop of locally ( within 5 miles )' },
+    { name: 'to drop off locally ( within 5 miles )' },
     { name: 'to deliver ( within 20 miles )' },
     { name: 'for someone to come and collect' }
 ]
