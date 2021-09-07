@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { LoggedInUserClient } from "../../packages/Commercetools/Clients/APIClient";
-import { Box, Image, Text } from "@chakra-ui/react";
+import { Box, HStack, Image, Text } from "@chakra-ui/react";
 import TextInputField from "@/components/shared-components/input-fields/text-input-field";
 import ConfirmButton from "@/components/shared-components/buttons/confirm-button";
 import { useRouter } from "next/router";
@@ -9,6 +9,7 @@ import LoginRoleSwitch from "./login-role-switch";
 import { RoleSwitchState } from "./roleSwitchState";
 import Link from "next/link";
 import { getMe } from "packages/Commercetools/Users/getUser";
+import { PinInput, PinInputField } from "@chakra-ui/react"
 
 interface LoginProps {}
 
@@ -86,6 +87,11 @@ const Login: React.FC<LoginProps> = ({}) => {
     setPassword(event.target.value);
   };
 
+  const handlePinChange = (value:string) => {
+    setPassword(value);
+    console.log(value);
+  };
+
   const handleRoleChange = (toRole: RoleSwitchState) => {
     if (toRole == "parent") {
       setIsParent(true);
@@ -109,11 +115,35 @@ const Login: React.FC<LoginProps> = ({}) => {
               onChange={handleUsernameChange}
               placeholder={isParent ? "Your Email address" : "Your ID"}
             />
-            <TextInputField
-              isPassword={true}
-              onChange={handlePasswordChange}
-              placeholder={isParent ? "Your Password" : "Your PIN number"}
-            />
+
+          { isParent ?
+           <TextInputField
+           isPassword={true}
+           onChange={handlePasswordChange}
+           placeholder={isParent ? "Your Password" : "Your PIN number"}
+         />
+          :
+          <div> 
+          <Text
+              align="center"
+              paddingTop="2"
+              paddingBottom="5"
+              _hover={{ textColor: "#2f5a74" }}
+            >
+              Your PIN number
+            </Text>
+          <HStack>
+            <PinInput  onChange={handlePinChange}>
+              <PinInputField style={{ width: '90px', fontSize: '40px'}} height="90px"  backgroundColor="#e7e7e7" />
+              <PinInputField style={{ width: '90px', fontSize: '40px' }} height="90px" backgroundColor="#e7e7e7" />
+              <PinInputField style={{ width: '90px', fontSize: '40px' }} height="90px" backgroundColor="#e7e7e7" />
+              <PinInputField style={{ width: '90px', fontSize: '40px' }} height="90px" backgroundColor="#e7e7e7" />
+            </PinInput>
+          </HStack>
+          </div>
+          }
+            
+           
             <ConfirmButton onClick={handleLoginClick}>Login</ConfirmButton>
             {isError ? <div>Invalid credentials</div> : null}
             <Text
