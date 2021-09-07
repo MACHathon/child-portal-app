@@ -3,8 +3,7 @@ import { Card } from "types/card-type";
 import { Box, Text, Button } from "@chakra-ui/react";
 import Head from "next/head";
 import { AiTwotoneStar } from "react-icons/ai";
-import { RiUserHeartFill, RiLogoutBoxLine } from "react-icons/ri";
-// import { getData } from 'utils/getData';
+import { RiUserHeartFill } from "react-icons/ri";
 
 import ParentLayout from "@/components/shared-components/layouts/parent-layout";
 import SectionButton from "@/components/dashboard/parent-dashboard/parent-sections/section-button/section-button";
@@ -22,8 +21,8 @@ const parentSection: ParentSection[] = [
   {
     icon: <RiUserHeartFill />,
     bgColour: "#EA6699",
-    text: " Manage Accounts",
-    target: "/create-reward",
+    text: "Manage Accounts",
+    target: "/manage-accounts",
   }
 ];
 
@@ -96,20 +95,3 @@ const ParentDashboard: NextPage<Props> = ({ cards }) => {
 };
 
 export default ParentDashboard;
-
-// export const getStaticProps = async () => {
-
-//     const data = await getData('card-test-data.json');
-
-//     if(!data) {
-//         return {
-//             redirect: {
-//                 destination: '/'
-//             }
-//          }
-//     }
-
-//     return{
-//         props: { cards: data.cards}
-//     }
-// }

@@ -4,10 +4,12 @@ import { ReactNode } from "react"
 
 interface Props {
     bgColour: string;
-    children: ReactNode
+    children: ReactNode;
+    trackColor?: string;
+    thumbColor?: string;
 }
 
-const ColourSection: NextPage<Props> = ({ bgColour, children }): JSX.Element => {
+const ColourSection: NextPage<Props> = ({ bgColour, children, trackColor, thumbColor }): JSX.Element => {
     return (
         <Box
             position='relative'
@@ -23,10 +25,10 @@ const ColourSection: NextPage<Props> = ({ bgColour, children }): JSX.Element => 
               },
               '&::-webkit-scrollbar-track': {
                 width: '11px',
-                background: '#5091BA'
+                background: trackColor
               },
               '&::-webkit-scrollbar-thumb': {
-                background: '#ACD9F0',
+                background: thumbColor,
                 borderRadius: '50px',
               },
             }}

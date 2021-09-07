@@ -2,18 +2,18 @@ import { NextPage } from "next"
 import { getData } from "utils/getData"
 import { useState } from "react";
 
-import RewardsSection from "@/components/dashboard/parent-dashboard/parent-sections/sections/rewards-section";
+import RewardsSection from "@/components/dashboard/parent-dashboard/parent-sections/sections/rewards-section/rewards-section";
 import { CreateReward } from "types/create-rewards";
 import ParentLayout from "@/components/shared-components/layouts/parent-layout";
 import { Box } from "@chakra-ui/react";
-import SectionCard from "@/components/dashboard/parent-dashboard/parent-sections/sections/section-card";
-import RewardForm from "@/components/dashboard/parent-dashboard/parent-sections/sections/reward-form";
+import SectionCard from "@/components/dashboard/parent-dashboard/parent-sections/sections/rewards-section/section-card";
+import RewardForm from "@/components/dashboard/parent-dashboard/parent-sections/sections/rewards-section/reward-form";
 
 interface Props {
     rewards: CreateReward[];
 }
 
-const DashboardParentSection: NextPage<Props> = ({ rewards }): JSX.Element => {
+const ParentCreateReward: NextPage<Props> = ({ rewards }): JSX.Element => {
 
     const [ isFormOpen, setIsFormOpen ] = useState<Boolean>(false);
 
@@ -36,7 +36,13 @@ const DashboardParentSection: NextPage<Props> = ({ rewards }): JSX.Element => {
                 borderRadius='10px'
             >
                 <Box flex='1'>
-                    <SectionCard />
+                    <SectionCard 
+                        bgColor='#ACD9F0' 
+                        image='../../icons/teddy-bear.svg' 
+                        title='Create Rewards' 
+                        context='Create and manage Rewards' 
+                        btnColor='#66B8EC'
+                    />
                 </Box>
                 {
                     isFormOpen 
@@ -55,7 +61,7 @@ const DashboardParentSection: NextPage<Props> = ({ rewards }): JSX.Element => {
     )
 }
 
-export default DashboardParentSection
+export default ParentCreateReward
 
 export const getStaticProps = async () => {
 

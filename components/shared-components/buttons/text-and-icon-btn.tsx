@@ -7,26 +7,28 @@ interface Props {
     onClick: () => void
     icon?: ReactElement
     bgColour?: string
+    width?: string
+    color?: string
 }
 
-const TextIconButton: NextPage<Props> = ({ children, onClick, icon, bgColour }): JSX.Element => {
+const TextIconButton: NextPage<Props> = ({ children, onClick, icon, bgColour, width, color }): JSX.Element => {
     return (
         <Box
-        d='flex'
-        alignItems='center'
-        justifyContent='center'
-        height='72px'
-        width='100%'
-        borderRadius='10px'
-        padding='24px 30px'
-        margin='12px auto'
-        color='white'
-        boxShadow='m'
-        bg={ bgColour }
-        _hover={{ bg: "#2f5a74" }}
-        cursor='pointer'
-        onClick={ onClick }
-    >
+            d='flex'
+            alignItems='center'
+            justifyContent='center'
+            height='72px'
+            width={ width ? width : '100%' }
+            borderRadius='10px'
+            padding='24px 30px'
+            margin='12px auto'
+            color={ color ? color : 'white'}
+            boxShadow={ bgColour && 'm' }
+            bg={ bgColour }
+            _hover={ bgColour ? { bg: "#2f5a74" } : {}}
+            cursor='pointer'
+            onClick={ onClick }
+        >
         <Text
             fontFamily='Raleway'
             fontSize='24px'

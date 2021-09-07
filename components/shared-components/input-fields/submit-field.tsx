@@ -10,6 +10,8 @@ const SubmitField: NextPage<Props>= ({ value, bgColor }): JSX.Element => {
 
     return(
         <Input 
+            cursor='pointer'
+            textAlign='center'
             fontWeight='700'
             height='70px'
             width='100%'

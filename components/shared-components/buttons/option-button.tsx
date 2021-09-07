@@ -18,6 +18,7 @@ const OptionButton: NextPage<Props> = ({ color, icon, text, onClick }): JSX.Elem
             d='flex'
             alignItems='center'
             cursor='pointer'
+            margin='0 15px'
         >
             <Box
                 fontSize='30px'

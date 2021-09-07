@@ -3,9 +3,10 @@ import { NextPage } from "next"
 
 interface Props {
     onClick: () => void
+    text: string
 }
 
-const OpenFormButton: NextPage<Props> = ({ onClick }): JSX.Element => {
+const OpenFormButton: NextPage<Props> = ({ onClick, text }): JSX.Element => {
 
     return (
         <Box
@@ -28,7 +29,7 @@ const OpenFormButton: NextPage<Props> = ({ onClick }): JSX.Element => {
                 fontWeight='700'
                 color='white'
             >
-                + Add Reward
+               { text }
             </Text>
         </Box>
     )

@@ -1,21 +1,20 @@
 import SubmitField from "@/components/shared-components/input-fields/submit-field";
 import TextInputField from "@/components/shared-components/input-fields/text-input-field";
 import SelectField from "@/components/shared-components/input-fields/select-input-field";
-import { Box } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import { NextPage } from "next";
 import { getCategories } from "packages/Commercetools/Categories/getCategories";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import DeliveryChackBoxes from "./delivrery-checkboxes";
-import { Select } from "@chakra-ui/react";
 import { createItem } from "packages/Commercetools/Items/createItem";
 import { getMe } from "packages/Commercetools/Users/getUser";
+import UploadImage from "@/components/shared-components/image-upload/image-upload";
 
 type Category = {
   id: any;
   name: any;
 };
 
-//WIP
 const DonateForm: NextPage = (): JSX.Element => {
   const [checkedOption, setCheckedOption] = useState({});
   const [selectedType, setSelectedType] = useState("");
@@ -91,52 +90,84 @@ const DonateForm: NextPage = (): JSX.Element => {
     setSelectedCondition(value);
   };
 
+  const onImageUploadHandler = async (e: ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.files) 
+  }
+
   return (
-    <Box d="flex" flexDirection="column" width="40%">
+    <Box width="100%">
       <form onSubmit={onHandleSubmit}>
-        <TextInputField
-          isPassword={false}
-          name="name"
-          placeholder="The name of your item"
-          value={name}
-          onChange={onHandleChange}
-        />
-        <TextInputField
-          isPassword={false}
-          name="description"
-          placeholder="Describe your Item"
-          value={description}
-          onChange={onHandleChange}
-        />
+        <Box
+          display='flex'
+          width='100%'
+          justifyContent='space-between'
+          padding='0 5%'
+          alignItems='flex-start'
+        >
+            <Box width='45%'>
+              <TextInputField
+                isPassword={false}
+                name="name"
+                placeholder="The name of your item"
+                value={name}
+                onChange={onHandleChange}
+              />
+              <TextInputField
+                isPassword={false}
+                name="description"
+                placeholder="Describe your Item"
+                value={description}
+                onChange={onHandleChange}
+              />
 
-        <SelectField
-          placeholder="Type of Item"
-          name="type"
-          onChange={onHandleTypeChange}
-          options={itemTypes.map((type) => ({
-            id: type.id,
-            value: type.name["en-GB"],
-          }))}
-        />
+              <SelectField
+                placeholder="Type of Item"
+                name="type"
+                onChange={onHandleTypeChange}
+                options={itemTypes.map((type) => ({
+                  id: type.id,
+                  value: type.name["en-GB"],
+                }))}
+              />
 
-        <SelectField
-          placeholder="Item condition"
-          name="condition"
-          onChange={onHandleConditionChange}
-          options={[
-            { id: "New", value: "New" },
-            { id: "Used - good", value: "Used - Good" },
-            { id: "Used - worn", value: "Used - Worn" },
-            { id: "Needs some TLC", value: "Used - Needs some TLC" },
-          ]}
-        />
+              <SelectField
+                placeholder="Item condition"
+                name="condition"
+                onChange={onHandleConditionChange}
+                options={[
+                  { id: "New", value: "New" },
+                  { id: "Used - good", value: "Used - Good" },
+                  { id: "Used - worn", value: "Used - Worn" },
+                  { id: "Needs some TLC", value: "Used - Needs some TLC" },
+                ]}
+              />
 
-        <DeliveryChackBoxes
-          checkedOption={checkedOption}
-          setCheckedOption={setCheckedOption}
-        />
-        <Box width="30%">
-          <SubmitField value="Submit" bgColor="#EA6699" />
+              <DeliveryChackBoxes
+                checkedOption={checkedOption}
+                setCheckedOption={setCheckedOption}
+              />
+              <Box width="30%">
+                <SubmitField value="Submit" bgColor="#EA6699" />
+              </Box>
+            </Box>
+            <Box marginTop='20px' width='302px'>
+              <UploadImage onImageUploadHandler={onImageUploadHandler}/>
+              <Box
+                color='white'
+                fontFamily='Raleway'             
+                marginTop='30px'
+              >
+                <Text
+                  fontSize='24px'
+                  fontWeight='700'
+                >
+                  Upload photo
+                </Text>
+                <Text fontSize='18px'>
+                  This is not required but would really help us find your items a new home!
+                </Text>
+              </Box>
+            </Box>
         </Box>
       </form>
     </Box>

@@ -6,7 +6,15 @@ import { motion } from 'framer-motion';
 
 import CustomIconButton from '@/components/shared-components/buttons/custom-icon-button';
 
-const SectionCard: NextPage = (): JSX.Element  => {
+interface Props {
+    bgColor: string
+    image: string
+    title: string
+    context: string
+    btnColor: string
+}
+
+const SectionCard: NextPage<Props> = ({ bgColor, image, title, context, btnColor }): JSX.Element  => {
 
     const router = useRouter();
     const MotionBox = motion(Box)
@@ -17,7 +25,7 @@ const SectionCard: NextPage = (): JSX.Element  => {
             flexDirection='column'
             justifyContent='center'
             alignItems='center'
-            bg='#ACD9F0'
+            bg={ bgColor }
             width='326px'
             height='652px' 
             fontFamily='Raleway'
@@ -25,7 +33,7 @@ const SectionCard: NextPage = (): JSX.Element  => {
             padding={6} 
         >
             <Image 
-                src='../../icons/teddy-bear.svg'
+                src={ image }
                 alt='image' 
                 height='170px' 
                 width='170px' 
@@ -44,19 +52,19 @@ const SectionCard: NextPage = (): JSX.Element  => {
                     fontWeight='bold'                            
                     align='center'
                 >
-                    Create Rewards
+                    { title }
                 </Text>
                 <Text
                     fontSize='20px' 
                     fontWeight='400'
                     align='center'
                 >
-                    Create and manage Rewards
+                    { context }
                 </Text>
                 <CustomIconButton 
                     width='72px'
                     height='72px'
-                    bgColour='#66B8EC'
+                    bgColour={ btnColor }
                     icon={<HiX />}
                     destinationHandler={() => router.push('/parent-dashboard')}
                 />
