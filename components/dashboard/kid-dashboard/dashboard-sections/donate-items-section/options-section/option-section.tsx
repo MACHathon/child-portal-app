@@ -5,9 +5,10 @@ import SectionButton from "@/components/dashboard/parent-dashboard/parent-sectio
 
 interface Props {
     onFormOpenHandler: () => void
+    onRedirectHandler: () => void
 }
 
-const OptionSection: NextPage<Props> = ({ onFormOpenHandler }): JSX.Element => {
+const OptionSection: NextPage<Props> = ({ onFormOpenHandler, onRedirectHandler }): JSX.Element => {
     return (
         <Box
             height='100%'
@@ -45,6 +46,7 @@ const OptionSection: NextPage<Props> = ({ onFormOpenHandler }): JSX.Element => {
                     margin='12px auto'
                     marginTop='40px'
                     cursor='pointer'
+                    onClick={onRedirectHandler}
                 >
                       <Text
                         fontFamily='Raleway'

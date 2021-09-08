@@ -89,7 +89,7 @@ const SectionsList: NextPage<Props> = ({ items, deleteOnClick, history, editOnCl
                             >
                                 {
                                     childList 
-                                    ?  <TextIconButton onClick={() => rewardOnClick} icon={<RiArrowRightLine />}  bgColour='#66B8EC' width='80%' >Select this reward</TextIconButton>
+                                    ?  <TextIconButton onClick={() => rewardOnClick} icon={<RiArrowRightLine />}  bgColour='#66B8EC' width='100%' >Select this reward</TextIconButton>
                                     : <Fragment>
                                         <OptionButton icon={ <FiEdit2 />} text={'Edit'} color='#66B8EC' onClick={() => editOnClick} />
                                         {

@@ -5,8 +5,13 @@ import { Box } from "@chakra-ui/react";
 import SectionCard from "@/components/dashboard/parent-dashboard/parent-sections/sections/rewards-section/section-card";
 import SectionLayout from "@/components/shared-components/layouts/section-layout";
 import ToykenTrailsSection from "@/components/dashboard/kid-dashboard/dashboard-sections/toyken-trails-section/toyken-trails-section";
+import { getData } from "utils/getData";
 
-const ToykenTrails: NextPage = ():JSX.Element => {
+interface Props {
+    trails: any;
+}
+
+const ToykenTrails: NextPage<Props> = ({ trails }):JSX.Element => {
     
     return (
         <DashboardLayout>
@@ -20,10 +25,27 @@ const ToykenTrails: NextPage = ():JSX.Element => {
                         btnColor='#FD8300'
                     />
                 </Box>
-                <ToykenTrailsSection />
+                <ToykenTrailsSection trails={trails}/>
              </SectionLayout>
         </DashboardLayout>
     )
 }
 
 export default ToykenTrails;
+
+export const getStaticProps = async () => {
+
+    const data = await getData('trails-test-data.json');
+  
+    if(!data) {
+        return { 
+            redirect: {
+                destination: '/kid-dashboard'
+            }
+         }
+    }
+  
+    return{
+        props: { trails: data.trails }
+    }
+}
