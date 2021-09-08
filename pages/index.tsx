@@ -3,10 +3,6 @@ import Head from "next/head";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import {
-  AnonUserClient,
-  LoggedInUserClient,
-} from "../packages/Commercetools/Clients/APIClient";
 import Login from "../components/login/login";
 
 const Home: NextPage = () => {
