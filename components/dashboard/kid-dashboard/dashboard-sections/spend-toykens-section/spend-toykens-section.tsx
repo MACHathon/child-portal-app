@@ -3,7 +3,7 @@ import { Box, Image, Text } from "@chakra-ui/react";
 
 import ColourSection from "@/components/shared-components/sections/colour-section";
 
-const SpendToykens: NextPage = (): JSX.Element => {
+const SpendToykensSection: NextPage = (): JSX.Element => {
     return (
         <ColourSection bgColour='#F6C165'>
             <Box
@@ -31,4 +31,4 @@ const SpendToykens: NextPage = (): JSX.Element => {
     )
 }
 
-export default SpendToykens
+export default SpendToykensSection

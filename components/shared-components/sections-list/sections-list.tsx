@@ -4,18 +4,21 @@ import { NextPage } from "next";
 import { Fragment } from "react";
 import { FiEdit2 } from 'react-icons/fi';
 import { VscHistory } from 'react-icons/vsc';
-import { RiDeleteBin6Line } from 'react-icons/ri';
+import { RiDeleteBin6Line, RiArrowRightLine } from 'react-icons/ri';
 
 import OptionButton from "../buttons/option-button";
+import TextIconButton from "../buttons/text-and-icon-btn";
 
 interface Props {
     items: any[]
     deleteOnClick?: () => void
     editOnClick?: () => void
+    rewardOnClick?: () => void
     history?: boolean
+    childList?: boolean
 }
 
-const SectionsList: NextPage<Props> = ({ items, deleteOnClick, history, editOnClick }): JSX.Element => {
+const SectionsList: NextPage<Props> = ({ items, deleteOnClick, history, editOnClick, rewardOnClick, childList }): JSX.Element => {
 
     const router = useRouter();
 
@@ -84,12 +87,18 @@ const SectionsList: NextPage<Props> = ({ items, deleteOnClick, history, editOnCl
                                 flexWrap='wrap'
                                 justifyContent='flex-end'
                             >
-                                <OptionButton icon={ <FiEdit2 />} text={'Edit'} color='#66B8EC' onClick={() => editOnClick} />
                                 {
-                                    history &&
-                                    <OptionButton icon={ <VscHistory />} text={'History'} color='#F6C165' onClick={() => router.push(`/parent-dashboard/reward-history/${item.name}`)} />
-                                }                      
-                                <OptionButton icon={ <RiDeleteBin6Line />} text={'Delete'} color='#EE0000' onClick={() => deleteOnClick} />
+                                    childList 
+                                    ?  <TextIconButton onClick={() => rewardOnClick} icon={<RiArrowRightLine />}  bgColour='#66B8EC' width='80%' >Select this reward</TextIconButton>
+                                    : <Fragment>
+                                        <OptionButton icon={ <FiEdit2 />} text={'Edit'} color='#66B8EC' onClick={() => editOnClick} />
+                                        {
+                                            history &&
+                                            <OptionButton icon={ <VscHistory />} text={'History'} color='#F6C165' onClick={() => router.push(`/parent-dashboard/reward-history/${item.name}`)} />
+                                        }                      
+                                        <OptionButton icon={ <RiDeleteBin6Line />} text={'Delete'} color='#EE0000' onClick={() => deleteOnClick} />
+                                    </Fragment>
+                                }
                             </Box>
                         </Box>
                     )

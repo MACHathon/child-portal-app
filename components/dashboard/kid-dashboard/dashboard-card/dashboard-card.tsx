@@ -19,7 +19,7 @@ const DashboardCard: NextPage<Props> = ({ card }): JSX.Element  => {
     
     const onRedirectHandler = (): void => {
         if(currentPath){
-            router.push(`kid-dashboard/section/${card.id}`)
+            router.push(`kid-dashboard/section/${card.card}`)
         }else {
             router.push('/kid-dashboard')
         }

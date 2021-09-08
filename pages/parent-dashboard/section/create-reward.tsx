@@ -8,6 +8,7 @@ import ParentLayout from "@/components/shared-components/layouts/parent-layout";
 import { Box } from "@chakra-ui/react";
 import SectionCard from "@/components/dashboard/parent-dashboard/parent-sections/sections/rewards-section/section-card";
 import RewardForm from "@/components/dashboard/parent-dashboard/parent-sections/sections/rewards-section/reward-form";
+import SectionLayout from "@/components/shared-components/layouts/section-layout";
 
 interface Props {
     rewards: CreateReward[];
@@ -27,14 +28,7 @@ const ParentCreateReward: NextPage<Props> = ({ rewards }): JSX.Element => {
 
     return (
         <ParentLayout>
-            <Box
-                d='flex' 
-                mt='2' 
-                width='100%'
-                margin='auto'
-                overflow='hidden'
-                borderRadius='10px'
-            >
+            <SectionLayout>
                 <Box flex='1'>
                     <SectionCard 
                         bgColor='#ACD9F0' 
@@ -55,8 +49,7 @@ const ParentCreateReward: NextPage<Props> = ({ rewards }): JSX.Element => {
                         onSectionSwitch={onSectionSwitch}
                     />
                 }
-            </Box>
-
+            </SectionLayout>
         </ParentLayout>
     )
 }

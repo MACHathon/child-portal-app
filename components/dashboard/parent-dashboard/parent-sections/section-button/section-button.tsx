@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 
 interface Props {
     children: ReactNode
-    target: string
+    target: () => void
     icon?: ReactElement
     bgColour?: string
 }
@@ -29,7 +29,7 @@ const SectionButton: NextPage<Props> = ({ children, target, icon, bgColour }): J
             bg={ bgColour }
             _hover={{ bg: "#2f5a74" }}
             cursor='pointer'
-            onClick={() => router.push(`/parent-dashboard/section/${target}`)}
+            onClick={target}
         >
             {
                 icon &&

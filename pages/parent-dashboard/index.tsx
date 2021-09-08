@@ -16,13 +16,13 @@ const parentSection: ParentSection[] = [
     icon: <AiTwotoneStar />,
     bgColour: "#66B8EC",
     text: "Create Rewards for my children",
-    target: "/create-reward",
+    target: "/parent-dashboard/section/create-reward",
   },
   {
     icon: <RiUserHeartFill />,
     bgColour: "#EA6699",
     text: "Manage Accounts",
-    target: "/manage-accounts",
+    target: "/parent-dashboard/section/manage-accounts",
   }
 ];
 
@@ -31,6 +31,7 @@ interface Props {
 }
 
 const ParentDashboard: NextPage<Props> = ({ cards }) => {
+  
   const router = useRouter();
 
   const handleLogoutClick = async () => {
@@ -65,7 +66,7 @@ const ParentDashboard: NextPage<Props> = ({ cards }) => {
               key={index}
               icon={section.icon}
               bgColour={section.bgColour}
-              target={section.target}
+              target={() => router.push(section.target)}
             >
               {section.text}
             </SectionButton>
@@ -85,7 +86,7 @@ const ParentDashboard: NextPage<Props> = ({ cards }) => {
           fontSize='24px'
           fontWeight="700"
           _hover={{ bg: "#2f5a74" }}
-          onClick={handleLogoutClick}
+          onClick={(handleLogoutClick)}
         >
           Logout
         </Button>

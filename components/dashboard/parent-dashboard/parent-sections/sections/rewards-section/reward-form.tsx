@@ -1,12 +1,10 @@
 import { NextPage } from "next";
 import { ChangeEvent, FormEvent, useState } from "react";
-import { HiArrowNarrowLeft } from 'react-icons/hi'
 
 import ColourSection from "@/components/shared-components/sections/colour-section";
 import TextInputField from "@/components/shared-components/input-fields/text-input-field";
 import SubmitField from "@/components/shared-components/input-fields/submit-field";
 import { Box, Text } from "@chakra-ui/layout";
-import CustomIconButton from '@/components/shared-components/buttons/custom-icon-button';
 
 interface Props {
     onCreateRewardHandler: (reward: {name: string, cost: string, visibleFor: string}) => void
@@ -49,22 +47,7 @@ const RewardForm: NextPage<Props> = ({ onCreateRewardHandler, onSectionSwitch}):
                 borderRadius='20px'
                 border='5px dashed white'
                 padding='38px'
-            >    
-                <Box
-                    position='absolute'
-                    right='60px'
-                    top='60px'
-                    width='55px'
-                    height='55px'
-                >
-                    <CustomIconButton 
-                        bgColour='#EA6699'
-                        width='55px'
-                        height='55px'
-                        destinationHandler={onSectionSwitch}
-                        icon={ <HiArrowNarrowLeft /> }
-                    />
-                </Box> 
+            >   
                 <Box
                     d='flex'
                     flexDirection='column'

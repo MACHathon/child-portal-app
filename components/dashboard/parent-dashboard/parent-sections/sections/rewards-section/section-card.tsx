@@ -66,7 +66,7 @@ const SectionCard: NextPage<Props> = ({ bgColor, image, title, context, btnColor
                     height='72px'
                     bgColour={ btnColor }
                     icon={<HiX />}
-                    destinationHandler={() => router.push('/parent-dashboard')}
+                    destinationHandler={() => router.back()}
                 />
                 </Box>
         </MotionBox>

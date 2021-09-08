@@ -7,6 +7,7 @@ import SectionCard from "@/components/dashboard/parent-dashboard/parent-sections
 import AccountsSection from "@/components/dashboard/parent-dashboard/parent-sections/sections/accounts-section/accounts-section";
 import CreateAccount from "@/components/dashboard/parent-dashboard/parent-sections/sections/accounts-section/create-account-form";
 import { getData } from "utils/getData";
+import SectionLayout from "@/components/shared-components/layouts/section-layout";
 
 interface Props {
     profiles: any
@@ -22,14 +23,7 @@ const ManageAccounts: NextPage<Props> = ({ profiles }): JSX.Element => {
 
     return (
         <ParentLayout>
-            <Box
-                d='flex' 
-                mt='2' 
-                width='100%'
-                margin='auto'
-                overflow='hidden'
-                borderRadius='10px'
-            >
+            <SectionLayout>
                 <Box flex='1'>
                     <SectionCard 
                         bgColor='#EAD0DA' 
@@ -47,7 +41,7 @@ const ManageAccounts: NextPage<Props> = ({ profiles }): JSX.Element => {
                             profiles={profiles}
                         />
                 }          
-            </Box>
+            </SectionLayout>
         </ParentLayout>
     )
 }

@@ -1,15 +1,14 @@
 import { NextPage } from "next"
 import { getData } from "utils/getData";
 import { Box, Text, Image } from '@chakra-ui/react'
-import { HiArrowNarrowLeft } from 'react-icons/hi'
 import { useRouter } from 'next/router'
 import { FiCheck } from 'react-icons/fi'; 
 
 import ParentLayout from "@/components/shared-components/layouts/parent-layout"
 import SectionCard from "@/components/dashboard/parent-dashboard/parent-sections/sections/rewards-section/section-card";
 import ColourSection from "@/components/shared-components/sections/colour-section";
-import CustomIconButton from '@/components/shared-components/buttons/custom-icon-button';
 import TextIconButton from "@/components/shared-components/buttons/text-and-icon-btn";
+import SectionLayout from "@/components/shared-components/layouts/section-layout";
 
 interface Props {
     profile: any;
@@ -21,14 +20,8 @@ const RewardHistory: NextPage<Props> = ({ profile }): JSX.Element => {
 
     return (
         <ParentLayout>
-            <Box
-                d='flex' 
-                mt='2' 
-                width='100%'
-                margin='auto'
-                overflow='hidden'
-                borderRadius='10px'
-            >
+            <SectionLayout>
+
                 <Box flex='1'>
                     <SectionCard 
                         bgColor='#EAD0DA' 
@@ -43,21 +36,6 @@ const RewardHistory: NextPage<Props> = ({ profile }): JSX.Element => {
                     thumbColor='#EAD0DA'
                     trackColor='#B85078'
                 >
-                     <Box
-                        position='absolute'
-                        right='60px'
-                        top='30px'
-                        width='55px'
-                        height='55px'
-                    >
-                        <CustomIconButton 
-                            bgColour='#66B8EC'
-                            width='55px'
-                            height='55px'
-                            destinationHandler={() => router.push('/parent-dashboard/section/manage-accounts')}
-                            icon={ <HiArrowNarrowLeft /> }
-                        />
-                    </Box> 
                     <Box
                         d='flex'
                         flexDirection='column'
@@ -145,7 +123,7 @@ const RewardHistory: NextPage<Props> = ({ profile }): JSX.Element => {
                         })
                     }
                 </ColourSection>     
-            </Box>
+            </SectionLayout>
         </ParentLayout>
     )
 }

@@ -1,10 +1,8 @@
 import { NextPage } from "next"
 import { Box, Text } from "@chakra-ui/react"
 import { ChangeEvent, FormEvent, useState } from "react";
-import { HiArrowNarrowLeft } from 'react-icons/hi'
 
 import ColourSection from "@/components/shared-components/sections/colour-section"
-import CustomIconButton from '@/components/shared-components/buttons/custom-icon-button';
 import SubmitField from "@/components/shared-components/input-fields/submit-field";
 import TextInputField from "@/components/shared-components/input-fields/text-input-field";
 import { Child } from "types/child";
@@ -52,21 +50,6 @@ const CreateAccount: NextPage<Props> = ({ onSectionSwitch }): JSX.Element => {
             thumbColor='#EAD0DA'
             trackColor='#B85078'
         >
-                <Box
-                    position='absolute'
-                    right='60px'
-                    top='30px'
-                    width='55px'
-                    height='55px'
-                >
-                    <CustomIconButton 
-                        bgColour='#66B8EC'
-                        width='55px'
-                        height='55px'
-                        destinationHandler={onSectionSwitch}
-                        icon={ <HiArrowNarrowLeft /> }
-                    />
-                </Box> 
                 <Box
                     d='flex'
                     flexDirection='column'
