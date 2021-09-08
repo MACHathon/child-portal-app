@@ -1,4 +1,4 @@
-import { AnonUserClient } from "../Clients/ApiClient";
+import { AnonUserClient } from "../Clients/APIClient";
 
 // Note for the Hackathon we won't store
 // - Business Type (Charity) OR

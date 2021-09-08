@@ -1,4 +1,4 @@
-import {  LoggedInUserClient } from "../Clients/ApiClient";
+import {  LoggedInUserClient } from "../Clients/APIClient";
 
 export const getInventory = async (retailerCommercetoolsId: string) => {
 
