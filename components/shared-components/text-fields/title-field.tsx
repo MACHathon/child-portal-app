@@ -6,9 +6,10 @@ interface Props {
     children: ReactNode;
     fontSize: string;
     color: string
+    start?: boolean
 }
 
-const TitleField:NextPage<Props> = ({ children, fontSize, color }) :JSX.Element => {
+const TitleField:NextPage<Props> = ({ children, fontSize, color, start }) :JSX.Element => {
 
     return (
         <Text
@@ -16,7 +17,7 @@ const TitleField:NextPage<Props> = ({ children, fontSize, color }) :JSX.Element 
             fontSize={ fontSize }
             fontWeight='700'
             color={ color }
-            textAlign='center'
+            textAlign={ start ? 'start' : 'center'}
             marginBottom='2%'
         >
             { children }
