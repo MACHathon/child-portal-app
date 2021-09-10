@@ -25,7 +25,7 @@ const DonateHistory: NextPage<Props> = ({ items }):JSX.Element => {
                         btnColor='#66B8EC'
                     />
                 </Box>
-                <DonateHistorySection />
+                <DonateHistorySection items={items}/>
             </SectionLayout>
         </DashboardLayout>
     )

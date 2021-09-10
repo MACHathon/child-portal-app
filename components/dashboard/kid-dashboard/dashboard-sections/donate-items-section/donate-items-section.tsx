@@ -17,7 +17,7 @@ const DonateItemsSection: NextPage = (): JSX.Element => {
 
     const onRedirectHandler = (): void => {
         router.push('/kid-dashboard/section/donate-history')
-    } 
+    }
 
     return (
         <ColourSection 
