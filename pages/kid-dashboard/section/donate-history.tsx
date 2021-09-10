@@ -5,8 +5,13 @@ import { Box } from "@chakra-ui/react";
 import SectionCard from "@/components/dashboard/parent-dashboard/parent-sections/sections/rewards-section/section-card";
 import SectionLayout from "@/components/shared-components/layouts/section-layout";
 import DonateHistorySection from "@/components/dashboard/kid-dashboard/dashboard-sections/donate-history-section/donate-history-section";
+import { getData } from "utils/getData";
 
-const DonateHistory: NextPage = ():JSX.Element => {
+interface Props {
+    items: any;
+}
+
+const DonateHistory: NextPage<Props> = ({ items }):JSX.Element => {
 
     return (
         <DashboardLayout>
@@ -27,3 +32,21 @@ const DonateHistory: NextPage = ():JSX.Element => {
 }
 
 export default DonateHistory;
+
+export const getStaticProps = async () => {
+
+    const data = await getData('donate-items-data.json');
+  
+    if(!data) {
+        return { 
+            redirect: {
+                destination: '/kid-dashboard'
+            }
+         }
+    }
+  
+    return{
+        props: { items: data.items }
+    }
+}
+
