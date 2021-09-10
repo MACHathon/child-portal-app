@@ -8,19 +8,19 @@
         },
         {
             "id": "2",
-            "target": "Visit the Shops earn Toykens!",
+            "target": "Visit the Shops to earn Toykens!",
             "stops": "2",
             "away": "3"
         },
         {
             "id": "3",
-            "target": "Visit the Entertainer earn Toykens!",
+            "target": "Visit the Entertainer to earn Toykens!",
             "stops": "1",
             "away": "2"
         },
         {
             "id": "4",
-            "target": "Visit the Entertainer earn Toykens!",
+            "target": "Visit the Entertainer to earn Toykens!",
             "stops": "1",
             "away": "6"
         }

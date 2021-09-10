@@ -17,12 +17,15 @@ const TrailsList: NextPage<Props> = ({ trails }): JSX.Element => {
                return (
                    <Box
                        key={ trail.id }
+                       backgroundImage="url('/images/map.png')"
+                       backgroundPosition="center"
+                       backgroundRepeat="no-repeat"
+                       backgroundSize='cover'
                        d='flex'
                        justifyContent='space-between'
                        alignItems='center'
                        height='150px'
                        width='100%'
-                       bg='white'
                        borderRadius='20px'
                        padding='25px 35px'
                        marginBottom='2%'
@@ -39,6 +42,7 @@ const TrailsList: NextPage<Props> = ({ trails }): JSX.Element => {
                                 borderRadius='10px'
                                 padding='10px'
                                 cursor='pointer'
+                                bg='white'
                            >
                                { trail.target }
                            </Text>
@@ -52,6 +56,7 @@ const TrailsList: NextPage<Props> = ({ trails }): JSX.Element => {
                                     padding='10px'
                                     cursor='pointer'
                                     marginRight='15px'
+                                    bg='white'
                                 >
                                     { trail.stops } stops
                                 </Text>
@@ -60,6 +65,7 @@ const TrailsList: NextPage<Props> = ({ trails }): JSX.Element => {
                                     borderRadius='10px'
                                     padding='10px'
                                     cursor='pointer'
+                                    bg='white'
                                 >
                                     { trail.away } mile away from home
                                 </Text>
