@@ -108,7 +108,7 @@ const Login: React.FC<LoginProps> = ({}) => {
       ) : (
         <Box d="flex" flexDirection="column" width="100%">
           <Box zIndex="20">
-            <LoginRoleSwitch handleRoleChange={handleRoleChange} />
+            <LoginRoleSwitch handleRoleChange={handleRoleChange} isParentSelected={isParent} />
             <TextInputField
               isPassword={false}
               onChange={handleUsernameChange}

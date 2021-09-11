@@ -6,9 +6,10 @@ import { RoleSwitchState } from "./roleSwitchState";
 
 interface LoginRoleSwitchProps {
     handleRoleChange: (toRole: RoleSwitchState) => void;
+    isParentSelected: boolean;
 }
 
-const LoginRoleSwitch: React.FC<LoginRoleSwitchProps> = ({handleRoleChange}) => {
+const LoginRoleSwitch: React.FC<LoginRoleSwitchProps> = ({handleRoleChange, isParentSelected}) => {
 
     const MotionText = motion(Text);
    
@@ -36,7 +37,8 @@ const LoginRoleSwitch: React.FC<LoginRoleSwitchProps> = ({handleRoleChange}) => 
                 whileHover={{ scale: 1.1, rotate: 20 }}
                 whileTap={{ scale: 1, rotate: 0 }}
                 cursor='pointer'     
-                onClick={handleChildClick}                     
+                onClick={handleChildClick}      
+                borderBottom={isParentSelected ? '' : '5px dashed pink'}
             >
                 Child
             </MotionText>
@@ -44,7 +46,8 @@ const LoginRoleSwitch: React.FC<LoginRoleSwitchProps> = ({handleRoleChange}) => 
                 whileHover={{ scale: 1.15, rotate: -25 }}
                 whileTap={{ scale: 1, rotate: 0 }}
                 cursor='pointer' 
-                onClick={handleParentClick}                                             
+                onClick={handleParentClick}
+                borderBottom={isParentSelected ? '5px dashed pink' : ''}                                             
             >
                 Parent
             </MotionText>
