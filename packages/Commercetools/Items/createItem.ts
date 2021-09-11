@@ -3,7 +3,7 @@ import { LoggedInUserClient } from "../Clients/APIClient";
 const getDeliveryOptionKey = (option: string) => {
   if (option == 'to post') return 'post'
   if (option == 'to drop off locally ( within 5 miles )') return 'drop off locally'
-  if (option == 'to deliver ( within 20 miles )') return 'deliver'
+  if (option == 'drop off ( within 20 miles )') return 'deliver'
   return 'collection'
 }
 

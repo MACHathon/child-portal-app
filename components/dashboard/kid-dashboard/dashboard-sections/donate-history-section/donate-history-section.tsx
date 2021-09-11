@@ -15,25 +15,16 @@ interface Props {
     items: any;
 }
 
-//WIP
+
 const DonateHistorySection: NextPage<Props> = ({ items }): JSX.Element => {
-  const [me, setMe] = React.useState<Me | null>(null);
-  const [history, setHistory] = React.useState<ProductProjection[]>([]);
+  
 
-  const doneItems = items.filter((item: any) => item.done === 'true')
-  const readyForActionItems = items.filter((item: any) => item.done === 'false')
+  const doneItems = items.filter((item: any) => item.done === true)
+  const readyForActionItems = items.filter((item: any) => item.done === false && item.matched == true)
+  const readyForMatchItems = items.filter((item: any) => item.done === false && item.matched == false)
 
-  useEffect(() => {
-    (async () => {
-      let me = await getMe();
-      setMe(me);
-      console.log(me);
-      let toysDonated = await getChildDonatedHistory(me?.id as string);
-
-      console.log(toysDonated.body.results);
-      setHistory(toysDonated.body.results);
-    })();
-  }, []);
+  console.log(readyForMatchItems);
+console.log(readyForActionItems);
 
   return (
     <ColourSection 
@@ -41,12 +32,25 @@ const DonateHistorySection: NextPage<Props> = ({ items }): JSX.Element => {
         thumbColor='#ACD9F0'
         trackColor='#5091BA'
     >
+         <Box
+            marginBottom='60px'
+        >
+            <TitleField
+                color='#FFFFFF'
+                fontSize='24px'
+                start
+            >
+                The following items are awaiting a match - thank you for donating them!
+            </TitleField>
+            <DonateItemList items={readyForMatchItems} />
+        </Box>
+
         <Box
             marginBottom='60px'
         >
             <TitleField
                 color='#FFFFFF'
-                fontSize='34px'
+                fontSize='24px'
                 start
             >
                 The following items have actions
@@ -57,10 +61,10 @@ const DonateHistorySection: NextPage<Props> = ({ items }): JSX.Element => {
         <Box>
             <TitleField
                 color='#FFFFFF'
-                fontSize='34px'
+                fontSize='24px'
                 start
             >
-                Previous items
+                Donation history
             </TitleField>
             <DonateItemList items={doneItems} />
         </Box>

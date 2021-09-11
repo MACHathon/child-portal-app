@@ -78,6 +78,8 @@ const DonateForm: NextPage = (): JSX.Element => {
       type: "",
       condition: "",
     });
+
+    window.location.href = "/kid-dashboard";
   };
 
   const onHandleTypeChange = (e: ChangeEvent<HTMLSelectElement>): void => {

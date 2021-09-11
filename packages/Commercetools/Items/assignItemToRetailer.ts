@@ -1,9 +1,11 @@
 import {  LoggedInUserClient } from "../Clients/APIClient";
 
-export const assignItem = async (retailerCommercetoolsId: string, productId:string, sku: string) => {
+export const assignItemToRetailer = async (retailerCommercetoolsId: string, retailerName:string, retailerPostcode:string,  productId:string, sku: string) => {
 
   var product = await LoggedInUserClient.products().withId({ ID: productId}).get().execute();
   
+  // TODO ALSO NEEDS Selected Delivery Option
+
   var updatedProduct = await LoggedInUserClient.products().withId({ ID: productId }).post( { body: {
     version: product.body.version, 
     actions: [
@@ -12,7 +14,19 @@ export const assignItem = async (retailerCommercetoolsId: string, productId:stri
          action: "setAttribute",
          name: "assigned-to",
          value: retailerCommercetoolsId        
-       }
+       },
+       {
+        sku,
+        action: "setAttribute",
+        name: "assigned-to-name",
+        value: retailerName       
+      },
+      {
+        sku,
+        action: "setAttribute",
+        name: "assigned-to-postcode",
+        value: retailerPostcode        
+      }
      ]
    }}).execute();
 

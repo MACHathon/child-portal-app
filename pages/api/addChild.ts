@@ -4,6 +4,16 @@ import { serialize } from "cookie";
 import SdkAuth from "@commercetools/sdk-auth";
 import { SecureApiClient } from "../../packages/Commercetools/Clients/SecureApiClient";
 import { getMe } from "packages/Commercetools/Users/getUser";
+// const TalonOne = require("talon_one");
+
+// const defaultClient = TalonOne.ApiClient.instance;
+// defaultClient.basePath = "https://valtech.europe-west1.talon.one";
+
+// const api_key_v1 = defaultClient.authentications["api_key_v1"];
+// api_key_v1.apiKey = process.env.NEXT_PUBLIC_TALONONE_API_KEY ?? "";
+// api_key_v1.apiKeyPrefix = "ApiKey-v1";
+// const integrationApi = new TalonOne.IntegrationApi();
+
 
 type Data = {
   data: string;
@@ -88,8 +98,28 @@ export default async function handler(
         console.log("link child result")
         console.log(linkChildResponse);
 
+
+        // Create Toyken balence
+
         res.status(200).json({ data: "success" });
       }
     }
   }
 }
+
+
+// export const setupLoyalty = async (childCommerceToolsId: string) => {
+//   let result = await integrationApi
+//       .updateCustomerProfileV2(
+//         childCommerceToolsId,
+//         {
+//           responseContent: ["customerProfile"],
+//         },
+//         { runRuleEngine: true }
+//       )
+//       .then((response: any) => {
+//         //todo - how do we increment points on demand?
+//         console.log(JSON.stringify(response));
+//       });
+// };
+

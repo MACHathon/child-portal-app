@@ -57,34 +57,37 @@ const DonateItemList: NextPage<Props> = ({ items }): JSX.Element => {
                                     >
                                         <Text
                                             fontSize='22px'
-                                            color={ item.done === 'true' ? '#333333' : '#F6C165'}
+                                            color={ item.done === true ? '#333333' : '#000'}
                                             marginRight='10px'
                                             > 
                                             { item.comment } 
                                         </Text>
                                         {
-                                            item.done === 'true' 
+                                            item.done === true 
                                             && <Text
                                                     fontSize='22px'
                                                     color='#F6C165'
                                                 >
-                                                    - { item.toykens } Toyken added
+                                                    - { item.toykens } Toykens added
                                                 </Text>
                                         }
                                     </Box>
-                                    <Text
-                                        d='flex'
-                                        alignItems='center'
-                                        justifyContent='center'
-                                        w='100px'
-                                        h='30px'
-                                        onClick={() => {}}
-                                        bg={ item.done === 'true' ? '#97D4A8' : '#F6D396'}
-                                        color='#333333'
-                                        margin='25px 0'
-                                    >
-                                       { item.done === 'true' ? 'Done' : 'Take action' } 
-                                    </Text>
+                                    {/* { item.matched == true && item.done == false ?
+                                        <Text
+                                            d='flex'
+                                            alignItems='center'
+                                            justifyContent='center'
+                                            w='100px'
+                                            h='30px'
+                                            onClick={() => {}}
+                                            bg={ item.done === 'true' ? '#97D4A8' : '#F6D396'}
+                                            color='#333333'
+                                            margin='25px 0'
+                                        >
+                                        { 'Take action' } 
+                                        </Text>
+                                    : null} */}
+                                   
                                 </Box>
                             </Box>
                         </Box>
