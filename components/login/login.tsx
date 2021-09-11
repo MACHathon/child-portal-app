@@ -117,6 +117,7 @@ const Login: React.FC<LoginProps> = ({}) => {
           <Box zIndex="20">
             <LoginRoleSwitch
               handleRoleChange={handleRoleChange}
+              isParentSelected={isParent}
               parentLabel={contentfulData.fields?.parentSelectorLabel}
               childLabel={contentfulData.fields?.childSelectorLabel}
             />
