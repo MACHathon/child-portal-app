@@ -19,8 +19,7 @@ const Login: React.FC<LoginProps> = ({}) => {
   const { asPath } = useRouter();
 
   const [contentfulData, isLoading] = useContentfulData<TypeChildHomepage>(
-    "4cS7JUzLdGq5SLfiZ04kjq",
-    "de-DE"
+    "4cS7JUzLdGq5SLfiZ04kjq"
   );
 
   const [username, setUsername] = React.useState<string>("");

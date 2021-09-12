@@ -1,22 +1,25 @@
 import { useEffect, useState } from "react";
 import { createClient } from "contentful";
+import { useCountries } from "./useCountries";
 
 const client = createClient({
-  space: process.env.CF_SPACE_ID as string,
-  accessToken: process.env.CF_DELIVERY_ACCESS_TOKEN as string,
+  space: process.env.NEXT_PUBLIC_CF_SPACE_ID as string,
+  accessToken: process.env.NEXT_PUBLIC_CF_DELIVERY_ACCESS_TOKEN as string,
 });
 
-function useContentfulData<T>(contentId: string, region: string): [T, boolean] {
+function useContentfulData<T>(contentId: string): [T, boolean] {
   const [data, setData] = useState<T>({} as T);
   const [loading, setLoading] = useState(true);
+  const [countries, selectedCountry, setCountry] = useCountries();
 
   useEffect(() => {
-    client.getEntry(contentId, { locale: region }).then((entry) => {
-      setData(entry as any);
-      console.log(process.env.CF_SPACE_ID);
-      setLoading(false);
-    });
-  }, [contentId, region]);
+    client
+      .getEntry(contentId, { locale: selectedCountry.isoLocale })
+      .then((entry) => {
+        setData(entry as any);
+        setLoading(false);
+      });
+  }, [contentId, selectedCountry]);
   return [data, loading];
 }
 
