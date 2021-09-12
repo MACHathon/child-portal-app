@@ -94,7 +94,7 @@ const KidDashboard: NextPage<Props> = () => {
         paddingLeft="30"
         paddingRight="30"
       >
-        Logout
+        {data?.fields?.logoutLabel}
       </Button>
     </DashboardLayout>
   );
@@ -119,43 +119,44 @@ export default KidDashboard;
 // };
 
 const GetCardLocalisedData = (fields: TypeChildDashboardFields): Card[] => {
-  if (fields == null) return [];
-  return [
-    {
-      id: "1",
-      card: "donate-items",
-      image: "../../icons/teddy-bear.svg",
-      title: fields.donateItemsLabel,
-      context: fields.donateItemsDescription,
-      colour: "#ACD9F0",
-      secondColour: "#66B8EC",
-    },
-    {
-      id: "2",
-      card: "spend-toykens",
-      image: "../../icons/toyken-stack.png",
-      title: fields.spendToykensLabel,
-      context: fields.spendMyToykensDescription,
-      colour: "#F6D396",
-      secondColour: "#F6C165",
-    },
-    {
-      id: "3",
-      card: "choose-rewards",
-      image: "../../icons/gift.svg",
-      title: fields.chooseRewardLabel,
-      context: fields.chooseRewardsDescription,
-      colour: "#EAD0DA",
-      secondColour: "#EA6699",
-    },
-    {
-      id: "4",
-      card: "toyken-trails",
-      image: "../../icons/signpost.svg",
-      title: fields.trailsLabel,
-      context: fields.trailsDescription,
-      colour: "#FDD7AF",
-      secondColour: "#FD8300",
-    },
-  ];
+  return !!fields
+    ? [
+        {
+          id: "1",
+          card: "donate-items",
+          image: "../../icons/teddy-bear.svg",
+          title: fields.donateItemsLabel,
+          context: fields.donateItemsDescription,
+          colour: "#ACD9F0",
+          secondColour: "#66B8EC",
+        },
+        {
+          id: "2",
+          card: "spend-toykens",
+          image: "../../icons/toyken-stack.png",
+          title: fields.spendToykensLabel,
+          context: fields.spendMyToykensDescription,
+          colour: "#F6D396",
+          secondColour: "#F6C165",
+        },
+        {
+          id: "3",
+          card: "choose-rewards",
+          image: "../../icons/gift.svg",
+          title: fields.chooseRewardLabel,
+          context: fields.chooseRewardsDescription,
+          colour: "#EAD0DA",
+          secondColour: "#EA6699",
+        },
+        {
+          id: "4",
+          card: "toyken-trails",
+          image: "../../icons/signpost.svg",
+          title: fields.trailsLabel,
+          context: fields.trailsDescription,
+          colour: "#FDD7AF",
+          secondColour: "#FD8300",
+        },
+      ]
+    : [];
 };
