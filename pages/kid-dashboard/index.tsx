@@ -8,43 +8,60 @@ import { Button } from "@chakra-ui/react";
 
 import DashboardCard from "@/components/dashboard/kid-dashboard/dashboard-card/dashboard-card";
 import DashboardLayout from "@/components/shared-components/layouts/dashboard-layout";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getMe } from "packages/Commercetools/Users/getUser";
+import {
+  TypeChildDashboard,
+  TypeChildDashboardFields,
+} from "types/TypeChildDashboard";
+import { useContentfulData } from "@/components/hooks/useContentfulData";
 
 interface Props {
   cards: Card[];
 }
 
-const KidDashboard: NextPage<Props> = ({ cards }) => {
-
+const KidDashboard: NextPage<Props> = () => {
   useEffect(() => {
-    
-    (async () => {    
-        var me = await getMe();
-  
-        console.log("me");
-        console.log(me);
-    })();
+    (async () => {
+      var me = await getMe();
 
+      console.log("me");
+      console.log(me);
+    })();
   }, []);
 
   const router = useRouter();
 
+  const [data, isloading] = useContentfulData<TypeChildDashboard>(
+    "4Y6odArfh6UqlTsBMfh9Ir"
+  );
+
+  const [cards, setCards] = useState<Card[]>([]);
+
+  useEffect(() => {
+    if (!isloading && data != null) {
+      setCards(GetCardLocalisedData(data?.fields));
+    }
+  }, [data, isloading]);
+
   const onRedirectHandler = async () => {
-    const rawResponse = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/api/logout`, {
+    const rawResponse = await fetch(
+      `${process.env.NEXT_PUBLIC_API_HOST}/api/logout`,
+      {
         method: "GET",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-      });
+      }
+    );
 
-      // Deleeting cookies... never easy
-      document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC;"
+    // Deleeting cookies... never easy
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
 
-      if (rawResponse.status == 200) {
-        window.location.href = "/";
-      }      
+    if (rawResponse.status == 200) {
+      window.location.href = "/";
+    }
   };
 
   return (
@@ -85,18 +102,60 @@ const KidDashboard: NextPage<Props> = ({ cards }) => {
 
 export default KidDashboard;
 
-export const getStaticProps = async () => {
-  const data = await getData("card-test-data.json");
+// export const getStaticProps = async () => {
+//   const data = await getData("card-test-data.json");
 
-  if (!data) {
-    return {
-      redirect: {
-        destination: "/",
-      },
-    };
-  }
+//   if (!data) {
+//     return {
+//       redirect: {
+//         destination: "/",
+//       },
+//     };
+//   }
 
-  return {
-    props: { cards: data.cards },
-  };
+//   return {
+//     props: { cards: data.cards },
+//   };
+// };
+
+const GetCardLocalisedData = (fields: TypeChildDashboardFields): Card[] => {
+  if (fields == null) return [];
+  return [
+    {
+      id: "1",
+      card: "donate-items",
+      image: "../../icons/teddy-bear.svg",
+      title: fields.donateItemsLabel,
+      context: fields.donateItemsDescription,
+      colour: "#ACD9F0",
+      secondColour: "#66B8EC",
+    },
+    {
+      id: "2",
+      card: "spend-toykens",
+      image: "../../icons/toyken-stack.png",
+      title: fields.spendToykensLabel,
+      context: fields.spendMyToykensDescription,
+      colour: "#F6D396",
+      secondColour: "#F6C165",
+    },
+    {
+      id: "3",
+      card: "choose-rewards",
+      image: "../../icons/gift.svg",
+      title: fields.chooseRewardLabel,
+      context: fields.chooseRewardsDescription,
+      colour: "#EAD0DA",
+      secondColour: "#EA6699",
+    },
+    {
+      id: "4",
+      card: "toyken-trails",
+      image: "../../icons/signpost.svg",
+      title: fields.trailsLabel,
+      context: fields.trailsDescription,
+      colour: "#FDD7AF",
+      secondColour: "#FD8300",
+    },
+  ];
 };
