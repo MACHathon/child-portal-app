@@ -8,13 +8,19 @@ import LoginRoleSwitch from "./login-role-switch";
 import { RoleSwitchState } from "./roleSwitchState";
 import Link from "next/link";
 import { getMe } from "packages/Commercetools/Users/getUser";
-import { PinInput, PinInputField } from "@chakra-ui/react"
+import { PinInput, PinInputField } from "@chakra-ui/react";
+import { useContentfulData } from "../hooks/useContentfulData";
+import { TypeChildHomepage } from "types/TypeChildHomepage";
 
 interface LoginProps {}
 
 const Login: React.FC<LoginProps> = ({}) => {
   const router = useRouter();
   const { asPath } = useRouter();
+
+  const [contentfulData, isLoading] = useContentfulData<TypeChildHomepage>(
+    "4cS7JUzLdGq5SLfiZ04kjq"
+  );
 
   const [username, setUsername] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
@@ -30,7 +36,7 @@ const Login: React.FC<LoginProps> = ({}) => {
 
       if (!!me) {
         console.log(me);
-        setIsWaiting(false);``
+        setIsWaiting(false);
         if (me?.userType == "child") {
           window.location.href = "/kid-dashboard";
         } else {
@@ -86,7 +92,7 @@ const Login: React.FC<LoginProps> = ({}) => {
     setPassword(event.target.value);
   };
 
-  const handlePinChange = (value:string) => {
+  const handlePinChange = (value: string) => {
     setPassword(value);
     console.log(value);
   };
@@ -101,57 +107,89 @@ const Login: React.FC<LoginProps> = ({}) => {
 
   return (
     <>
-      {isWaiting ? (
+      {isWaiting && !isLoading ? (
         <h1>Loading spinner here...</h1>
       ) : isLoggedIn ? (
         <h1>Logged in</h1>
       ) : (
         <Box d="flex" flexDirection="column" width="100%">
           <Box zIndex="20">
-            <LoginRoleSwitch handleRoleChange={handleRoleChange} isParentSelected={isParent} />
+            <LoginRoleSwitch
+              handleRoleChange={handleRoleChange}
+              isParentSelected={isParent}
+              parentLabel={contentfulData.fields?.parentSelectorLabel}
+              childLabel={contentfulData.fields?.childSelectorLabel}
+            />
             <TextInputField
               isPassword={false}
               onChange={handleUsernameChange}
-              placeholder={isParent ? "Your Email address" : "Your ID"}
+              placeholder={
+                isParent
+                  ? contentfulData.fields?.emailInputLabel
+                  : contentfulData.fields?.childIdLabel
+              }
             />
 
-          { isParent ?
-           <TextInputField
-           isPassword={true}
-           onChange={handlePasswordChange}
-           placeholder={isParent ? "Your Password" : "Your PIN number"}
-         />
-          :
-          <div> 
-          <Text
-              align="center"
-              paddingTop="2"
-              paddingBottom="5"
-              _hover={{ textColor: "#2f5a74" }}
-            >
-              Your PIN number
-            </Text>
-          <HStack>
-            <PinInput  onChange={handlePinChange}>
-              <PinInputField style={{ width: '90px', fontSize: '40px'}} height="90px"  backgroundColor="#e7e7e7" />
-              <PinInputField style={{ width: '90px', fontSize: '40px' }} height="90px" backgroundColor="#e7e7e7" />
-              <PinInputField style={{ width: '90px', fontSize: '40px' }} height="90px" backgroundColor="#e7e7e7" />
-              <PinInputField style={{ width: '90px', fontSize: '40px' }} height="90px" backgroundColor="#e7e7e7" />
-            </PinInput>
-          </HStack>
-          </div>
-          }
-            
-           
-            <ConfirmButton onClick={handleLoginClick}>Login</ConfirmButton>
-            {isError ? <div>Invalid credentials</div> : null}
+            {isParent ? (
+              <TextInputField
+                isPassword={true}
+                onChange={handlePasswordChange}
+                placeholder={
+                  isParent
+                    ? contentfulData.fields?.passwordInputLabel
+                    : contentfulData.fields?.pinInputLabel
+                }
+              />
+            ) : (
+              <div>
+                <Text
+                  align="center"
+                  paddingTop="2"
+                  paddingBottom="5"
+                  _hover={{ textColor: "#2f5a74" }}
+                >
+                  {contentfulData.fields?.pinInputLabel}
+                </Text>
+                <HStack>
+                  <PinInput onChange={handlePinChange}>
+                    <PinInputField
+                      style={{ width: "90px", fontSize: "40px" }}
+                      height="90px"
+                      backgroundColor="#e7e7e7"
+                    />
+                    <PinInputField
+                      style={{ width: "90px", fontSize: "40px" }}
+                      height="90px"
+                      backgroundColor="#e7e7e7"
+                    />
+                    <PinInputField
+                      style={{ width: "90px", fontSize: "40px" }}
+                      height="90px"
+                      backgroundColor="#e7e7e7"
+                    />
+                    <PinInputField
+                      style={{ width: "90px", fontSize: "40px" }}
+                      height="90px"
+                      backgroundColor="#e7e7e7"
+                    />
+                  </PinInput>
+                </HStack>
+              </div>
+            )}
+
+            <ConfirmButton onClick={handleLoginClick}>
+              {contentfulData.fields?.loginCtaLabel}
+            </ConfirmButton>
+            {isError ? (
+              <div>{contentfulData.fields?.invalidCredentialsLabel}</div>
+            ) : null}
             <Text
               align="center"
               paddingTop="2"
               _hover={{ textColor: "#2f5a74" }}
             >
               <Link href="/register">
-                No account? Ask your parent to register here!
+                <span>{contentfulData.fields?.askYourParentsLabel}</span>
               </Link>
             </Text>
           </Box>
