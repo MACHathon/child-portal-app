@@ -6,12 +6,16 @@ import { motion } from "framer-motion";
 
 import { Country } from "types/country";
 import { useCountries } from "@/components/hooks/useCountries";
+import { useContentfulData } from "@/components/hooks/useContentfulData";
+import { TypeComponentHeader } from "types/TypeComponentHeader";
 
 const DropDownSelector: NextPage = (): JSX.Element => {
   const [countries, selectedCountry, setCountry] = useCountries();
   const MotionBox = motion(Box);
   const [isListOpen, setIsListOpen] = useState<boolean>(false);
-
+  const [data, isLoading] = useContentfulData<TypeComponentHeader>(
+    "3L7ODj3p4laQiOOrWnScoZ"
+  );
   const toggleSelect = (): void => {
     setIsListOpen((prevState) => !prevState);
   };
@@ -36,7 +40,7 @@ const DropDownSelector: NextPage = (): JSX.Element => {
           fontSize={{ base: "0px", md: "18px", lg: "18px" }}
           marginRight="25px"
         >
-          Select a country
+          {data.fields?.countrySelectorLabel}
         </Text>
         <Image
           src={selectedCountry?.icon}
