@@ -55,4 +55,4 @@ const LoginRoleSwitch: React.FC<LoginRoleSwitchProps> = ({handleRoleChange, isPa
     )
 }
 
-export default LoginRoleSwitch
+export default LoginRoleSwitch 
