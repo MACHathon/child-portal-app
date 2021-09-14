@@ -48,7 +48,10 @@ const DonateHistory: NextPage<Props> = ({ items }):JSX.Element => {
 
                 let isDone: boolean = false;
                 let isMatched: boolean = false;
-                let comment = "Recieved - Thank you!";
+                //let comment = "Recieved - Thank you!";
+
+                // For MVP we haven't allowed retailer to select delivery option preference. So for now will just state retailer to arrange delivery
+                let comment = "We've found this item a new home! The new owner will be in contact with your parent to arrange delivery/collection!";
 
                 if (toy?.masterVariant?.attributes?.length)
                 {
