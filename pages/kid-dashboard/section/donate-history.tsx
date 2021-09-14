@@ -52,7 +52,7 @@ const DonateHistory: NextPage<Props> = ({ items }):JSX.Element => {
 
                 if (toy?.masterVariant?.attributes?.length)
                 {
-                    if (toy?.masterVariant?.attributes.filter(i => i.name == "assigned-to").length)
+                    if (toy?.masterVariant?.attributes.filter(i => i.name == "assigned-to").length && toy?.masterVariant?.attributes.filter(i => i.name == "assigned-to")[0].value != 'unassigned')
                     {
                         isMatched = true;
 
