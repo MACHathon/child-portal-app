@@ -1,7 +1,8 @@
 import { LoggedInUserClient } from "../Clients/APIClient";
 
 const getDeliveryOptionKey = (option: string) => {
-  if (option == 'to post') return 'post'
+  if (option == 'to post (i will pay delivery costs)') return 'post ill pay'
+  if (option == 'to post (if retailer pays delivery costs)') return 'post retailer pay'
   if (option == 'to drop off locally ( within 5 miles )') return 'drop off locally'
   if (option == 'drop off ( within 20 miles )') return 'deliver'
   return 'collection'
@@ -78,6 +79,10 @@ export const createItem =  async(categoryId: string, name: string, description:s
             {
               name: "donator-location-lon",
               value:donatorLatLon?.lon
+            },
+            {
+              name: "assigned-to",
+              value:"unassigned"
             },
           ],
           // prices: [

@@ -10,7 +10,8 @@ interface Props {
 }
 
 const deliveryOptions: { name: string }[] = [  
-    { name: 'to post' },
+    { name: 'to post (i will pay delivery costs)' },
+    { name: 'to post (if retailer pays delivery costs)' },
     { name: 'to drop off locally ( within 5 miles )' },
     { name: 'drop off ( within 20 miles )' },
     { name: 'for someone to come and collect' }
