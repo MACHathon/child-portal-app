@@ -46,6 +46,10 @@ const ParentDashboard: NextPage<Props> = ({ cards }) => {
       }
     );
 
+     // Deleeting cookies... never easy
+     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+
+
     if (rawResponse.status == 200) {
       window.location.href = "/";
     }
