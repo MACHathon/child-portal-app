@@ -17,10 +17,13 @@ export default async function handler(
         serialize("token", "", {
           path: "/",
           sameSite: "lax",
+          domain: "www.toyken.org"
           //httpOnly: true, // OK to expose to the client
           //secure: true    // TODO when we have HTTPS i.e is not dev
         })
       );
+
+      
 
       res.status(200).json({ data : "success" });  
 }

@@ -1,48 +1,50 @@
-import { createContext, useState, ReactNode } from 'react';
+import { createContext, useState, ReactNode } from "react";
 
-import { Country } from 'types/country';
+import { Country } from "types/country";
 
 const countries: Country[] = [
-    {
-        country: "United Kingdom",
-        icon: "../../icons/united-kingdom.svg"
-    },
-    {
-        country: "Germany",
-        icon: "../../icons/germany.svg"
-    }
-]
+  {
+    country: "United Kingdom",
+    icon: "../../icons/united-kingdom.svg",
+    isoLocale: "en-GB",
+  },
+  {
+    country: "Germany",
+    icon: "../../icons/germany.svg",
+    isoLocale: "de-DE",
+  },
+];
 
 interface Props {
-    children: ReactNode;
-};
+  children: ReactNode;
+}
 
 interface Countries {
-    countries: Country[];
-    selectedCountry: Country;
-    selectedCountryItem: (country: Country) => void; 
+  countries: Country[];
+  selectedCountry: Country;
+  selectedCountryItem: (country: Country) => void;
 }
 
-export const Countries = createContext<Countries>({} as Countries)
+export const Countries = createContext<Countries>({} as Countries);
 
 const CountryProvider: React.FC<Props> = ({ children }) => {
+  const [selectedCountry, setSelectedCountry] = useState<Country>(countries[0]);
 
-    const [ selectedCountry, setSelectedCountry ] = useState<Country>(countries[0]);
+  const selectedCountryItem = (country: Country): void => {
+    setSelectedCountry(country);
+  };
 
-    const selectedCountryItem = (country: Country): void => {
-        setSelectedCountry(country);
-    };
+  return (
+    <Countries.Provider
+      value={{
+        countries,
+        selectedCountry,
+        selectedCountryItem,
+      }}
+    >
+      {children}
+    </Countries.Provider>
+  );
+};
 
-    return (
-        <Countries.Provider 
-        value={{
-                countries,
-                selectedCountry,
-                selectedCountryItem
-               }}>
-                { children }
-        </Countries.Provider>
-    )
-}
-
-export default CountryProvider
+export default CountryProvider;

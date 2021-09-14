@@ -17,6 +17,8 @@ export const createItem =  async(categoryId: string, name: string, description:s
   let slug = name.replace(/\s+/g, "-").toLowerCase();
   let toyType = "6102b311-bdc5-4760-b43f-ab7061cf74ea";
 
+  let donatorLatLon = await getLatLon(postCode);
+
   let createdProduct = await LoggedInUserClient.products()
     .post({
       body: {
@@ -68,6 +70,14 @@ export const createItem =  async(categoryId: string, name: string, description:s
             {
               name: "delivery-option",
               value:deliveryOptions
+            },
+            {
+              name: "donator-location-lat",
+              value:donatorLatLon?.lat
+            },
+            {
+              name: "donator-location-lon",
+              value:donatorLatLon?.lon
             },
           ],
           // prices: [
@@ -169,3 +179,33 @@ export const createItem =  async(categoryId: string, name: string, description:s
 //     return null;
 //   }
 // };
+
+
+const getLatLon = async (
+  postcode: string
+) => {
+  let rawResponse = await fetch(
+    `https://api.postcodes.io/postcodes/${postcode}`,
+    {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    }
+  );
+
+  if (rawResponse.status != 200) {
+    // handle error
+    console.log("error");
+    console.log(rawResponse);
+  } else {
+    const content = await rawResponse.json();
+
+    let lat = content.result.latitude;
+    let lon = content.result.longitude;
+
+    return { lat, lon }
+   
+    }
+};

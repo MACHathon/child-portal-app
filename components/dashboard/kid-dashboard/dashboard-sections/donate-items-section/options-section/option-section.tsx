@@ -56,7 +56,7 @@ const OptionSection: NextPage<Props> = ({ onFormOpenHandler, onRedirectHandler }
                     >
                        View my donated items
                     </Text>
-                    <Box
+                    {/* <Box
                         height='28px'
                         width='28px'
                         bg='#EA6699'
@@ -74,7 +74,7 @@ const OptionSection: NextPage<Props> = ({ onFormOpenHandler, onRedirectHandler }
                         >
                             1
                         </Text>  
-                    </Box>
+                    </Box> */}
                 </Box>
             </Box>
         </Box>

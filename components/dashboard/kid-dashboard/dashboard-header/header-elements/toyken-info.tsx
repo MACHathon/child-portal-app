@@ -1,7 +1,22 @@
 import { Box, Text, Image } from "@chakra-ui/react"
 import { NextPage } from "next"
+import { getToykenBalence } from "packages/Commercetools/Users/getToykens";
+import { getMe } from "packages/Commercetools/Users/getUser";
+import React from "react";
+import { useEffect } from "react";
 
 const ToykenInfo: NextPage = ():JSX.Element => {
+
+  const [toykens, setToykens] = React.useState<number>(0);
+
+  useEffect(() => {
+    (async () => {
+      let me = await getMe();
+      let toykensBalence = await getToykenBalence(me?.commerceToolsId as string);
+      console.log(toykensBalence);
+      setToykens(toykensBalence.loyalty.programs.SampleWallet.ledger.currentBalance ?? 0);
+    })();
+  }, []);
 
     return (
       <Box
@@ -20,7 +35,7 @@ const ToykenInfo: NextPage = ():JSX.Element => {
              padding='5px 14px'
              color='white'
           >
-                102
+                { toykens }
           </Text>
           <Box
             d='flex'
