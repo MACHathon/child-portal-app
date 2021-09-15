@@ -67,7 +67,7 @@ const KidDashboard: NextPage<Props> = () => {
   return (
     <DashboardLayout>
       <Head>
-        <title>Child Portal - Dashboard</title>
+        <title>Retailer Portal - Dashboard</title>
         <meta name="description" content="Dashboard" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
