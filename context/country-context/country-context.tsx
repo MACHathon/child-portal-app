@@ -24,13 +24,37 @@ interface Countries {
   selectedCountry: Country;
   selectedCountryItem: (country: Country) => void;
 }
+const getInitialLocale = () => {
+  const previousLocale =
+    typeof window !== "undefined" ? localStorage.getItem("locale") : null;
+  return previousLocale ?? createInitialLocal();
+};
+
+const setPersistedLocale = (locale: string) => {
+  localStorage.setItem("locale", locale);
+};
+
+const createInitialLocal = () => {
+  const initialLocale = countries[0];
+  if (typeof window !== "undefined") {
+    setPersistedLocale(initialLocale.isoLocale);
+  }
+  return initialLocale;
+};
 
 export const Countries = createContext<Countries>({} as Countries);
 
 const CountryProvider: React.FC<Props> = ({ children }) => {
-  const [selectedCountry, setSelectedCountry] = useState<Country>(countries[0]);
+  const initialLocale = getInitialLocale();
+  const initialCountry = countries.filter(
+    (c) => c.isoLocale === initialLocale
+  )[0];
+
+  const [selectedCountry, setSelectedCountry] =
+    useState<Country>(initialCountry);
 
   const selectedCountryItem = (country: Country): void => {
+    setPersistedLocale(country.isoLocale);
     setSelectedCountry(country);
   };
 
