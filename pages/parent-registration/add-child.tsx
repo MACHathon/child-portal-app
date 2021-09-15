@@ -45,7 +45,7 @@ const AddChild: NextPage = (): JSX.Element => {
     console.log(rawResponse);
 
     if (rawResponse.status == 200 || rawResponse.status == 201) {
-      router.push("/parent-dashboard");
+      window.location.href = "/parent-dashboard";
     }
   };
 
