@@ -1,6 +1,6 @@
 import { Box, Image, Text } from "@chakra-ui/react";
 import { NextPage } from "next";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiChevronDown } from "react-icons/fi";
 import { motion } from "framer-motion";
 
@@ -20,11 +20,24 @@ const DropDownSelector: NextPage = (): JSX.Element => {
     setIsListOpen((prevState) => !prevState);
   };
 
+  useEffect(() => {
+    let initialCountry = selectedCountry;
+
+    if (!initialCountry) {
+      setCountry(countries[0]);
+    }
+  }, []);
+
   const selectedCountryItem = (name: string): void => {
     const selectedCountry = countries.filter((c) => c.country === name)[0];
 
-    console.warn(selectedCountry);
-    setCountry(selectedCountry);
+    if (!selectedCountry) {
+      setCountry(countries[0]);
+    } else {
+      console.warn(selectedCountry);
+      setCountry(selectedCountry);
+    }
+
     setIsListOpen(false);
   };
 

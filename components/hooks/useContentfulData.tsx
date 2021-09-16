@@ -13,8 +13,16 @@ function useContentfulData<T>(contentId: string): [T, boolean] {
   const [countries, selectedCountry, setCountry] = useCountries();
 
   useEffect(() => {
+
+    let initialCountry = selectedCountry;
+
+    if (!initialCountry)
+    {
+      initialCountry = countries[0];
+    }
+
     client
-      .getEntry(contentId, { locale: selectedCountry.isoLocale })
+      .getEntry(contentId, { locale: initialCountry.isoLocale })
       .then((entry) => {
         setData(entry as any);
         setLoading(false);
