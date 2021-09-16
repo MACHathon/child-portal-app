@@ -35,24 +35,24 @@ const ParentDashboard: NextPage<Props> = ({ cards }) => {
   const router = useRouter();
 
   const handleLogoutClick = async () => {
-    const rawResponse = await fetch(
-      `${process.env.NEXT_PUBLIC_API_HOST}/api/logout`,
-      {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    // const rawResponse = await fetch(
+    //   `${process.env.NEXT_PUBLIC_API_HOST}/api/logout`,
+    //   {
+    //     method: "GET",
+    //     headers: {
+    //       Accept: "application/json",
+    //       "Content-Type": "application/json",
+    //     },
+    //   }
+    // );
 
      // Deleeting cookies... never easy
      document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+     window.location.href = "/";
 
-
-    if (rawResponse.status == 200) {
-      window.location.href = "/";
-    }
+    // if (rawResponse.status == 200) {
+    //   window.location.href = "/";
+    // }
   };
 
   return (

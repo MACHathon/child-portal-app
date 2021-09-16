@@ -9,7 +9,7 @@ import TitleField from "@/components/shared-components/text-fields/title-field";
 const Welcome: NextPage = (): JSX.Element => {
 
     const router = useRouter();
-    const message = ' “Hi, I am Kylie and I will guide you through our Webiste.”'
+    const message = ' “Hi, I am Kylie and I will guide you through our Website.”'
 
     const MotionText = motion(Text);
 
