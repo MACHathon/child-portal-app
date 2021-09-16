@@ -21,12 +21,19 @@ interface Props {
 }
 
 const KidDashboard: NextPage<Props> = () => {
+  const [hasLoaded, setHasLoaded] = useState(false);
+
   useEffect(() => {
     (async () => {
       var me = await getMe();
 
-      console.log("me");
-      console.log(me);
+      if (!me) {
+        window.location.href = "/";
+      } else {
+        console.log("me");
+        console.log(me);
+        setHasLoaded(true);
+      }
     })();
   }, []);
 
@@ -65,38 +72,42 @@ const KidDashboard: NextPage<Props> = () => {
   };
 
   return (
-    <DashboardLayout>
-      <Head>
-        <title>Retailer Portal - Dashboard</title>
-        <meta name="description" content="Dashboard" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <>
+      {hasLoaded ? (
+        <DashboardLayout>
+          <Head>
+            <title>Retailer Portal - Dashboard</title>
+            <meta name="description" content="Dashboard" />
+            <link rel="icon" href="/favicon.ico" />
+          </Head>
 
-      <Box
-        d="flex"
-        justifyContent="space-between"
-        mt="2"
-        alignItems="center"
-        width="100%"
-        margin="auto"
-        flexWrap="wrap"
-        paddingBottom="3%"
-      >
-        {cards.map((card) => (
-          <DashboardCard key={card.id} card={card} />
-        ))}
-      </Box>
-      <Button
-        height="72px"
-        backgroundColor="#ff7b7b"
-        textColor="#FFF"
-        onClick={onRedirectHandler}
-        paddingLeft="30"
-        paddingRight="30"
-      >
-        {data?.fields?.logoutLabel}
-      </Button>
-    </DashboardLayout>
+          <Box
+            d="flex"
+            justifyContent="space-between"
+            mt="2"
+            alignItems="center"
+            width="100%"
+            margin="auto"
+            flexWrap="wrap"
+            paddingBottom="3%"
+          >
+            {cards.map((card) => (
+              <DashboardCard key={card.id} card={card} />
+            ))}
+          </Box>
+          <Button
+            height="72px"
+            backgroundColor="#ff7b7b"
+            textColor="#FFF"
+            onClick={onRedirectHandler}
+            paddingLeft="30"
+            paddingRight="30"
+          >
+            {data?.fields?.logoutLabel}
+          </Button>
+        </DashboardLayout>
+      ) : null}
+    </>
   );
 };
 
